@@ -22,22 +22,19 @@ The format etc. is of course configurable, just head down to the options.
 
 == Customize titles
 
-Need a custom title, or need to fill in some placeholders? Just provide a block, in e.g. <tt>contacts/show.html.erb</tt>:
+Need a custom title, or need to fill in some placeholders? Just provide a block, in e.g. <tt>contacts/show.html.erb</tt>t
+the requirement is to display the contacts name in the <tt><title>-tag</tt> as well as in the heading?
 
     <h1><%=h page_title { @contact.name } %></h1>
     
-A call to <tt>page_title</tt> will now return the contacts name, neat :) if for example the +h1+ does not match the +title+, then
+A call to <tt>page_title</tt> will now return the contacts name, neat :) if for example the <tt>h1</tt> does not match the +title+, then
 well, just do something like:
 
-    <%= page_title { @contact.name + " (" + @contact.company.name + ")" } %>
+    <% page_title { @contact.name + " (" + @contact.company.name + ")" } %>
     <h1><%=h @contact.name %></h1>
     
 Guess, that's it. Of course it's also possible to use +translate+ within the +page_title+ block, so to translate customzied titles.
 
-== Change the application name (and tagline)
-
-* TODO
-
-
+== TODO: describe how to change format, options overview etc...
 
 Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the MIT license
