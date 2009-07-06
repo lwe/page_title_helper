@@ -24,9 +24,9 @@ I18n.backend.store_translations :en, :contacts => { :list => { :title => 'contac
 
 class PageTitleHelperTest < ActiveSupport::TestCase  
   test "interpolations" do    
-    assert_equal 'Page title helper', PageTitleHelper::Interpolations.app('foo', {})
-    assert_equal 'Appname', PageTitleHelper::Interpolations.app('foo', { :app => 'Appname' })
-    assert_equal 'foo', PageTitleHelper::Interpolations.title('foo', {})
+    assert_equal 'Page title helper', PageTitleHelper::Interpolations.app('untitled', {})
+    assert_equal 'Appname', PageTitleHelper::Interpolations.app('untitled', { :app => 'Appname' })
+    assert_equal 'untitled', PageTitleHelper::Interpolations.title('untitled', {})
   end
   
   test "adding custom interpolation" do
@@ -37,7 +37,7 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       end
     end  
   
-    assert_equal "ppa", PageTitleHelper::Interpolations.app_reverse('foo', { :app => 'app' })
+    assert_equal "ppa", PageTitleHelper::Interpolations.app_reverse('untitled', { :app => 'app' })
     assert_equal "ppa", PageTitleHelper::Interpolations.interpolate(':app_reverse', 'foo', { :app => 'app' })
   end
   
