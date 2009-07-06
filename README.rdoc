@@ -1,0 +1,46 @@
+Page title helper
+=================
+
+Ever wondered if there was an easier and DRY-way to set your page titles (and/or headings). Backed by
+Rails (>= 2.3) new support for +I18n+ the solution is a simple helper method.
+
+In your layout add this to your <tt><head>-section</tt>:
+
+      ...
+      <title><%=h page_title %></title>
+      ...
+      
+That's it. Now just add your translations, to the locales, in e.g. <tt>config/locales/en.yml</tt>:
+
+      en:
+        contacts:
+          index:
+            title: "Contacts"
+            
+When <tt>contacs/index.html.erb</tt> is rendered, the key <tt>:en, :contacts, :index, :title</tt>
+is looked up and printed, together with the applications basename, like: <tt>My app - Contacts</tt>.
+The format etc. is of course configurable, just head down to the options.
+
+Customize titles
+----------------
+
+Need a custom title, or need to fill in some placeholders? Just provide a block, in e.g. <tt>contacts/show.html.erb</tt>:
+
+    <h1><%=h page_title { @contact.name } %></h1>
+    
+A call to <tt>page_title</tt> will now return the contacts name, neat :) if for example the +h1+ does not match the +title+, then
+well, just do something like:
+
+    <%= page_title { @contact.name + " (" + @contact.company.name + ")" } %>
+    <h1><%=h @contact.name %></h1>
+    
+Guess, that's it. Of course it's also possible to use +translate+ within the +page_title+ block, so to translate customzied titles.
+
+Change the application name (and tagline)
+-----------------------------------------
+
+TODO
+
+
+
+Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the MIT license
