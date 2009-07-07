@@ -89,4 +89,11 @@ To access just the title, without any magic app stuff interpolated or appended, 
   <tt>en -> contacts -> index -> title</tt>, but prefer e.g. them to be suffixed with
   <tt>page_title</tt>? Then just set <tt>:suffix => :page_title</tt>. (Default <tt>:title</tt>)
 
+If an option should be set globally it's possible to change the default options hash as follows:
+
+    PageTitleHelper.options[:format] = ':title / :app'
+    
+Note, currently it only makes sense to set <tt>:format</tt> and/or <tt>:default</tt> globally.
+
+== Licence and copyright
 Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the MIT license
