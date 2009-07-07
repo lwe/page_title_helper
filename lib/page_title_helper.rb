@@ -35,7 +35,8 @@ module PageTitleHelper
   def self.options
     @options ||= {
       :format => ':app - :title',
-      :default => :'app.tagline'
+      :default => :'app.tagline',
+      :suffix => :title
     }
   end
   
@@ -46,13 +47,13 @@ module PageTitleHelper
     end
     
     options = PageTitleHelper.options.merge(options || {})
-    options.assert_valid_keys(:app, :key, :default, :format)
+    options.assert_valid_keys(:app, :suffix, :default, :format)
     # just return the applications name
     return Interpolations.app('', {}) if options[:app] == true
     
     # read page title
     page_title = read_page_title_content_block
-    page_title = I18n.translate(options[:key] || i18n_template_key('title'), :default => options[:default]) if page_title.blank?
+    page_title = I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default]) if page_title.blank?
     
     # return page title if format is set explicitly to false
     return page_title if options[:format] == false
@@ -82,9 +83,9 @@ module PageTitleHelper
       @_first_render.template_path
     end
     
-    def i18n_template_key(append = nil)
+    def i18n_template_key(suffix = nil)
       ikey = read_first_render_path.gsub(/\.html\.erb$/, '').tr('/', '.')
-      ikey = ikey + "." + append.to_s unless append.nil?      
+      ikey = ikey + "." + suffix.to_s unless suffix.nil?      
       ikey
     end
 end
