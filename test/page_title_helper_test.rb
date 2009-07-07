@@ -23,7 +23,6 @@ end
 I18n.backend.store_translations :en, :contacts => { :list => { :title => 'contacts.list.title' }}
 I18n.backend.store_translations :en, :placeholder => 'Displaying {{name}}'
 
-
 class PageTitleHelperTest < ActiveSupport::TestCase  
   test "interpolations" do    
     assert_equal 'Page title helper', PageTitleHelper::Interpolations.app('untitled', {})
@@ -52,9 +51,14 @@ class PageTitleHelperTest < ActiveSupport::TestCase
     assert_equal 'Page title helper - contacts.list.title', view.page_title
   end
   
-  test "printing app name only if :app => true" do
+  test "printing app name only if :format => :app" do
     view = MockView.new
-    assert_equal 'Page title helper', view.page_title(:app => true)
+    assert_equal 'Page title helper', view.page_title(:format => :app)
+  end
+  
+  test "printing custom app name if :app defined and :format => :app" do
+    view = MockView.new
+    assert_equal "Some app", view.page_title(:app => 'Some app', :format => :app)
   end
   
   test "custom formatting options" do

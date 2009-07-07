@@ -77,13 +77,14 @@ To access just the title, without any magic app stuff interpolated or appended, 
 * <tt>page_title { ... }</tt> - not per se an option, but if a block is given the methods sets a
   custom title and overwrites any DRY-I18n title.
 * <tt>:app</tt> - specifiy the applications name, however it's recommended to define the
-  translation key <tt>:'app.name'</tt>. If set to <tt>true</tt>, just returns the app name,
-  as defined in the translations or based on the +RAILS_ROOT+ humanized basename.
+  translation key <tt>:'app.name'</tt> or use the the fallback behaviour for the humanzied
+  basename of +RAILS_ROOT+.
 * <tt>:default</tt> - string which is displayed when no translation exists and no custom title
   has been specified. Can also be set to a symbol or array to take advantage of
   <tt>I18n.translate</tt>s <tt>:default</tt> option. (Default is <tt>:'app.tagline'</tt>)
 * <tt>:format</tt> - defines the output format, accepts a string containing multiple interpolations,
   see <i>More fun with <tt>:format</tt></i>. If set to +false+, just the current title is returned.
+  If <tt>:format => :app</tt> then just the application name is returned.
   (Default is <tt>":app - :title"</tt>)
 * <tt>:suffix</tt> - not happy with the fact that the translations must be named like
   <tt>en -> contacts -> index -> title</tt>, but prefer e.g. them to be suffixed with

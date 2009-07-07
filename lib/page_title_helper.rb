@@ -49,7 +49,7 @@ module PageTitleHelper
     options = PageTitleHelper.options.merge(options || {})
     options.assert_valid_keys(:app, :suffix, :default, :format)
     # just return the applications name
-    return Interpolations.app('', {}) if options[:app] == true
+    return Interpolations.app('', options) if options[:format] == :app
     
     # read page title
     page_title = read_page_title_content_block
@@ -59,7 +59,7 @@ module PageTitleHelper
     return page_title if options[:format] == false
     
     # else -> interpolate
-    Interpolations.interpolate options[:format] || ':app - :title', page_title, options
+    Interpolations.interpolate options[:format], page_title, options
   end
   
   protected
