@@ -89,3 +89,8 @@ module PageTitleHelper
       ikey
     end
 end
+
+# tie stuff together
+if Object.const_defined?('ActionView')
+  ActionView::Base.send(:include, PageTitleHelper)
+end
