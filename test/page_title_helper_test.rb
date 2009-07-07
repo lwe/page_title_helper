@@ -18,6 +18,8 @@ class MockView
   def content_for(sym, &block)
     instance_variable_set('@content_for_' + sym.to_s, yield)
   end
+  
+  def controller; nil; end
 end
 
 I18n.backend.store_translations :en, :contacts => { :list => { :title => 'contacts.list.title' }}
@@ -25,19 +27,19 @@ I18n.backend.store_translations :en, :placeholder => 'Displaying {{name}}'
 
 class PageTitleHelperTest < ActiveSupport::TestCase  
   test "interpolations" do    
-    assert_equal 'Page title helper', PageTitleHelper::Interpolations.app('untitled', {})
-    assert_equal 'Appname', PageTitleHelper::Interpolations.app('untitled', { :app => 'Appname' })
-    assert_equal 'untitled', PageTitleHelper::Interpolations.title('untitled', {})
+    assert_equal 'Page title helper', PageTitleHelper::Interpolations.app(OpenStruct.new(:options => {}))
+    assert_equal 'Appname', PageTitleHelper::Interpolations.app(OpenStruct.new(:options => { :app => 'Appname' }))
+    assert_equal 'untitled', PageTitleHelper::Interpolations.title(OpenStruct.new({:title => 'untitled'}))
   end
   
   test "adding custom interpolation" do
     # extend Interpolations
-    PageTitleHelper.interpolates :app_reverse do |title, options|
-      app(title,options).reverse.downcase
+    PageTitleHelper.interpolates :app_reverse do |env|
+      app(env).reverse.downcase
     end
   
-    assert_equal "anna", PageTitleHelper::Interpolations.app_reverse('untitled', { :app => 'Anna' })
-    assert_equal "ppa", PageTitleHelper::Interpolations.interpolate(':app_reverse', 'foo', { :app => 'app' })
+    assert_equal "anna", PageTitleHelper::Interpolations.app_reverse(OpenStruct.new(:options => { :app => 'Anna' }))
+    assert_equal "ppa", PageTitleHelper::Interpolations.interpolate(':app_reverse', OpenStruct.new(:options => { :app => 'app' }))
   end
   
   test "setting title to 'foo' returns 'foo'" do

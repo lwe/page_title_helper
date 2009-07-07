@@ -1,3 +1,5 @@
+require 'ostruct'
+
 # PageTitleHelper
 module PageTitleHelper
   module Interpolations
@@ -16,12 +18,12 @@ module PageTitleHelper
       end
     end
     
-    def app(title, options)
-      options[:app] || I18n.translate(:'app.name', :default => File.basename(RAILS_ROOT).humanize)
+    def app(env)
+      env.options[:app] || I18n.translate(:'app.name', :default => File.basename(RAILS_ROOT).humanize)
     end
     
-    def title(title, options)
-      title
+    def title(env)
+      env.title
     end
   end
   
@@ -45,21 +47,26 @@ module PageTitleHelper
       content_for(:page_title) { yield }
       return read_page_title_content_block
     end
-    
+        
     options = PageTitleHelper.options.merge(options || {})
     options.assert_valid_keys(:app, :suffix, :default, :format)
+
+    # construct basic env
+    env = OpenStruct.new(:options => options, :view => self, :controller => self.controller)
+    
     # just return the applications name
-    return Interpolations.app('', options) if options[:format] == :app
+    return Interpolations.app(env) if options[:format] == :app
     
     # read page title
     page_title = read_page_title_content_block
     page_title = I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default]) if page_title.blank?
     
-    # return page title if format is set explicitly to false
+    # return page title if format is set explicitly set to false
     return page_title if options[:format] == false
     
     # else -> interpolate
-    Interpolations.interpolate options[:format], page_title, options
+    env.title = page_title
+    Interpolations.interpolate options[:format], env
   end
   
   protected
