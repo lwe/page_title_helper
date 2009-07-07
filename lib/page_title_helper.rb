@@ -7,7 +7,7 @@ module PageTitleHelper
     def self.all
       self.instance_methods(false).sort
     end
-    
+        
     def self.interpolate(pattern, *args)
       all.reverse.inject(pattern.dup) do |result, tag|
         result.gsub(/:#{tag}/) do |match|
@@ -23,6 +23,11 @@ module PageTitleHelper
     def title(title, options)
       title
     end
+  end
+  
+  # Add new, custom, interpolation.
+  def self.interpolates(key, &block)
+    Interpolations.send(:define_method, key, &block)
   end
   
   def page_title(options = nil, &block)
