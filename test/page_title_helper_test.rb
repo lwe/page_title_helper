@@ -21,6 +21,8 @@ class MockView
 end
 
 I18n.backend.store_translations :en, :contacts => { :list => { :title => 'contacts.list.title' }}
+I18n.backend.store_translations :en, :placeholder => 'Displaying {{name}}'
+
 
 class PageTitleHelperTest < ActiveSupport::TestCase  
   test "interpolations" do    
@@ -75,5 +77,11 @@ class PageTitleHelperTest < ActiveSupport::TestCase
     
     i18n_view = MockView.new 'contacts/list.html.erb'
     assert_equal "contacts.list.title", i18n_view.page_title(:format => false)
+  end
+  
+  test "custom title using a translation with a placeholder" do
+    view = MockView.new
+    view.page_title { I18n.t :placeholder, :name => 'Bella' }
+    assert_equal "Page title helper - Displaying Bella", view.page_title
   end
 end
