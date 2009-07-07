@@ -98,10 +98,13 @@ Note, currently it only makes sense to set <tt>:format</tt> and/or <tt>:default<
 
 == Some (maybe useful) interpolations
 
-    # internationalized controller names, with fallback
+The internationalized controller name, with fallback to just display the humanized name:
+
     PageTitleHelper.interpolates :controller do |env|
       I18n.t env.controller.controller_path.tr('/','.') + '.controller', :default => env.controller.controller_name.humanize
     end
+    
+<b>Note:</b> Where should I put these, as well as the default options? I'd put them in a new file at <tt>config/initializers/page_title.rb</tt> or someting like that.
     
 == Licence and copyright
 Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the MIT license
