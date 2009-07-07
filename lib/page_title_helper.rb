@@ -43,7 +43,7 @@ module PageTitleHelper
     
     page_title = instance_variable_get(:'@content_for_page_title') # NOTE: what happens if this changes...
     page_title = I18n.translate(options[:key] || i18n_template_key('title'), :default => (options[:default] || :'app.tagline')) if page_title.blank?      
-    return page_title if options[:heading]
+    return page_title if options[:format] == false
     
     Interpolations.interpolate options[:format] || ':app - :title', page_title, options
   end
