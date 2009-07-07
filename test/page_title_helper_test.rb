@@ -31,13 +31,11 @@ class PageTitleHelperTest < ActiveSupport::TestCase
   
   test "adding custom interpolation" do
     # extend Interpolations
-    module PageTitleHelper::Interpolations
-      def app_reverse(title, options)
-        app(title, options).reverse.downcase
-      end
-    end  
+    PageTitleHelper.interpolates :app_reverse do |title, options|
+      app(title,options).reverse.downcase
+    end
   
-    assert_equal "ppa", PageTitleHelper::Interpolations.app_reverse('untitled', { :app => 'app' })
+    assert_equal "anna", PageTitleHelper::Interpolations.app_reverse('untitled', { :app => 'Anna' })
     assert_equal "ppa", PageTitleHelper::Interpolations.interpolate(':app_reverse', 'foo', { :app => 'app' })
   end
   
@@ -63,5 +61,19 @@ class PageTitleHelperTest < ActiveSupport::TestCase
     
     assert_equal "Some app :: test", view.page_title(:app => "Some app", :format => ':app :: :title')
     assert_equal "Some app / test", view.page_title(:format => 'Some app / :title')
+  end
+  
+  test "return value of block to be used as heading" do
+    view = MockView.new
+    assert_equal "untitled", view.page_title { "untitled" }
+  end
+  
+  test "calling :format => false returns just current title, without any interpolations etc." do
+    view = MockView.new
+    view.page_title { "untitled" }
+    assert_equal "untitled", view.page_title(:format => false)
+    
+    i18n_view = MockView.new 'contacts/list.html.erb'
+    assert_equal "contacts.list.title", i18n_view.page_title(:format => false)
   end
 end
