@@ -61,8 +61,8 @@ prependor appended, or if it contains the account name etc. It uses a similar ap
 Adding custom interpolations is as easy as defining a block, for example to access the current
 controller:
 
-    PageTitleHelper.interpolates :controller do |title,options|
-      controller.class.humanize
+    PageTitleHelper.interpolates :controller do |env|
+      env.controller.controller_name.humanize
     end
     
     page_title :format => ':title / :controller / :app' # => "Welcome back / Dashboard / My cool app"
@@ -96,5 +96,12 @@ If an option should be set globally it's possible to change the default options 
     
 Note, currently it only makes sense to set <tt>:format</tt> and/or <tt>:default</tt> globally.
 
+== Some (maybe useful) interpolations
+
+    # internationalized controller names, with fallback
+    PageTitleHelper.interpolates :controller do |env|
+      I18n.t env.controller.controller_path.tr('/','.') + '.controller', :default => env.controller.controller_name.humanize
+    end
+    
 == Licence and copyright
 Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the MIT license
