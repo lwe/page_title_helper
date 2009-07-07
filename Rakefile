@@ -5,6 +5,21 @@ require 'rake/rdoctask'
 desc 'Default: run unit tests.'
 task :default => :test
 
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "page_title_helper"
+    gemspec.summary = "Simple, internationalized and DRY page titles and headings for rails."
+    gemspec.email = "lukas.westermann@gmail.com"
+    gemspec.homepage = "http://github.com/lwe/page_title_helper"
+    gemspec.description = "Ever wondered if there was an easier and DRY-way to set your page titles (and/or headings)? Now there is."
+    gemspec.authors = ["Lukas Westermann"]
+    gemspec.add_dependency('rails', '>=2.3.0')
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+end
+
 desc 'Test the page_title_helper plugin.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
