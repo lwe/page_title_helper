@@ -1,3 +1,12 @@
+# PageTitleHelper provides an +ActionView+ helper method to simplify adding
+# custom titles to pages.
+#
+# Author:: Lukas Westermann
+# Copyright:: Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland)
+# Licence:: MIT-Licence (http://www.opensource.org/licenses/mit-license.php)
+#
+# See documentation for +page_title+ for usage examples and more informations.
+
 require 'ostruct'
 
 # PageTitleHelper
@@ -5,13 +14,8 @@ module PageTitleHelper
   module Interpolations
     extend self
     
-    # Returns a sorted list of all interpolations.
-    def self.all
-      self.instance_methods(false).sort
-    end
-        
     def self.interpolate(pattern, *args)
-      all.reverse.inject(pattern.dup) do |result, tag|
+      instance_methods(false).sort.reverse.inject(pattern.dup) do |result, tag|
         result.gsub(/:#{tag}/) do |match|
           send(tag, *args)
         end
@@ -43,7 +47,7 @@ module PageTitleHelper
   end
   
   def page_title(options = nil, &block)
-    if block_given?
+    if block_given? # define title
       content_for(:page_title) { yield }
       return read_page_title_content_block
     end
@@ -51,21 +55,20 @@ module PageTitleHelper
     options = PageTitleHelper.options.merge(options || {})
     options.assert_valid_keys(:app, :suffix, :default, :format)
 
-    # construct basic env
+    # construct basic env to pass around
     env = OpenStruct.new(:options => options, :view => self, :controller => self.controller)
     
     # just return the applications name
     return Interpolations.app(env) if options[:format] == :app
     
     # read page title
-    page_title = read_page_title_content_block
-    page_title = I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default]) if page_title.blank?
+    env.title = read_page_title_content_block
+    env.title = I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default]) if env.title.blank?
     
     # return page title if format is set explicitly set to false
-    return page_title if options[:format] == false
+    return env.title if options[:format] == false
     
-    # else -> interpolate
-    env.title = page_title
+    # interpolate title
     Interpolations.interpolate options[:format], env
   end
   
