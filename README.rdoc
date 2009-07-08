@@ -1,7 +1,7 @@
 = Page title helper
 
 Ever wondered if there was an easier and DRY-way to set your page titles (and/or headings). Backed
-byRails (>= 2.3) new support for <i>I18n</i> the solution is a simple helper method.
+by Rails (only tested on 2.3.x) and it's new <tt>I18n</tt>-class the solution is a simple helper method.
 
 In your layout add this to your <tt><head>-section</tt>:
 
