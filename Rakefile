@@ -35,6 +35,9 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
 end
 
 namespace :metrics do
+  desc 'Report all metrics, i.e. stats and code coverage.'
+  task :all => [:stats, :coverage]
+  
   desc 'Report code statistics for library and tests to shell.'
   task :stats do |t|
     require 'code_statistics'
@@ -54,10 +57,10 @@ namespace :metrics do
   end
 end
 
-desc 'Start IRB console with loaded test/test_helper.rb and sqlite db.'
+desc 'Start IRB console with loaded test/test_helper.rb and PageTitleHelper.'
 task :console do |t|
   chdir File.dirname(__FILE__)
-  exec 'irb -Ilib/ -r page_title_helper'
+  exec 'irb -Ilib -r test/test_helper.rb -r page_title_helper'
 end
 
 desc 'Clean up generated files.'
