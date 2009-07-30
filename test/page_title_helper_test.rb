@@ -22,8 +22,9 @@ class MockView
   def controller; nil; end
 end
 
-I18n.backend.store_translations :en, :contacts => { :list => { :title => 'contacts.list.title' }}
+I18n.backend.store_translations :en, :contacts => { :list => { :title => 'contacts.list.title', :page_title => 'custom contacst title' }}
 I18n.backend.store_translations :en, :placeholder => 'Displaying {{name}}'
+I18n.backend.store_translations :en, :app => { :tagline => 'Default', :other_tagline => 'Other default' }
 
 class PageTitleHelperTest < ActiveSupport::TestCase  
   test "interpolations" do    
@@ -89,5 +90,25 @@ class PageTitleHelperTest < ActiveSupport::TestCase
     view = MockView.new
     view.page_title { I18n.t :placeholder, :name => 'Bella' }
     assert_equal "Page title helper - Displaying Bella", view.page_title
+  end
+  
+  test "render translated :'app.tagline' if no title is available" do
+    view = MockView.new 'view/does/not_exist.html.erb'
+    assert_equal "Page title helper - Default", view.page_title
+  end
+  
+  test "render custom 'default' string, if title is not available" do
+    view = MockView.new 'view/does/not_exist.html.erb'
+    assert_equal 'Page title helper - Some default', view.page_title(:default => 'Some default')
+  end
+  
+  test "render custom default translation, if title is not available" do
+    view = MockView.new 'view/does/not_exist.html.erb'
+    assert_equal 'Page title helper - Other default', view.page_title(:default => :'app.other_tagline')
+  end
+  
+  test "render auto-title using custom suffix 'page_title'" do
+    view = MockView.new 'contacts/list.html.erb'
+    assert_equal 'Page title helper - custom contacst title', view.page_title(:suffix => :page_title)
   end
 end
