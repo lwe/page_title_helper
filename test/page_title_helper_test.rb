@@ -22,7 +22,10 @@ class MockView
   def controller; nil; end
 end
 
-I18n.backend.store_translations :en, :contacts => { :list => { :title => 'contacts.list.title', :page_title => 'custom contacst title' }}
+# store translations
+I18n.backend.store_translations :en, :contacts => {
+  :list => { :title => 'contacts.list.title', :page_title => 'custom contacts title' },
+  :myhaml => { :title => 'this is haml!' }}
 I18n.backend.store_translations :en, :placeholder => 'Displaying {{name}}'
 I18n.backend.store_translations :en, :app => { :tagline => 'Default', :other_tagline => 'Other default' }
 
@@ -109,6 +112,11 @@ class PageTitleHelperTest < ActiveSupport::TestCase
   
   test "render auto-title using custom suffix 'page_title'" do
     view = MockView.new 'contacts/list.html.erb'
-    assert_equal 'Page title helper - custom contacst title', view.page_title(:suffix => :page_title)
+    assert_equal 'Page title helper - custom contacts title', view.page_title(:suffix => :page_title)
+  end
+  
+  test "ensure that it works with other template engines, like .html.haml" do
+    view = MockView.new('contacts/myhaml.html.haml')
+    assert_equal 'Page title helper - this is haml!', view.page_title
   end
 end
