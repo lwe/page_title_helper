@@ -89,12 +89,15 @@ module PageTitleHelper
     # and also kind of a hack, because this really seems to be some sort if
     # internal variable, that's why it's "abstracted" away as well.
     #
-    def read_first_render_path
-      @_first_render.template_path
+    # Also ensure that the extensions (like <tt>.html.erb</tt> or
+    # <tt>.html.haml</tt>) have been stripped of.
+    def first_render_path_without_extension
+      p = @_first_render.template_path
+      p[0,p.index('.')]
     end
     
     def i18n_template_key(suffix = nil)
-      ikey = read_first_render_path.gsub(/\.html\.erb$/, '').tr('/', '.')
+      ikey = first_render_path_without_extension.tr('/', '.')
       ikey = ikey + "." + suffix.to_s unless suffix.nil?      
       ikey
     end
