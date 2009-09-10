@@ -52,7 +52,7 @@ module PageTitleHelper
       return read_page_title_content_block
     end
         
-    options = PageTitleHelper.options.merge(options || {})
+    options = PageTitleHelper.options.merge(options || {}).symbolize_keys!
     options.assert_valid_keys(:app, :suffix, :default, :format)
 
     # construct basic env to pass around
