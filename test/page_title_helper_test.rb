@@ -39,13 +39,20 @@ class PageTitleHelperTest < ActiveSupport::TestCase
   
   test "adding custom interpolation" do
     # extend Interpolations
-    PageTitleHelper.interpolates :app_reverse do |env|
-      app(env).reverse.downcase
-    end
+    PageTitleHelper.interpolates(:app_reverse) { |env| app(env).reverse.downcase }
   
     assert_equal "anna", PageTitleHelper::Interpolations.app_reverse(OpenStruct.new(:options => { :app => 'Anna' }))
     assert_equal "ppa", PageTitleHelper::Interpolations.interpolate(':app_reverse', OpenStruct.new(:options => { :app => 'app' }))
   end
+  
+  test "that interpolations which are equaly named do match in correct order (longest first)" do
+    PageTitleHelper.interpolates(:foobar) { "foobar" }
+    PageTitleHelper.interpolates(:foobar_test) { "foobar_test" }
+    PageTitleHelper.interpolates(:title_foobar) { "title_foobar" }
+    
+    assert_equal "title_foobar / foobar_test / foobar / foobar_x", PageTitleHelper::Interpolations.interpolate(":title_foobar / :foobar_test / :foobar / :foobar_x", nil)
+  end
+  
   
   test "setting title to 'foo' returns 'foo'" do
     view = MockView.new
