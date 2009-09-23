@@ -93,7 +93,7 @@ module PageTitleHelper
     
     def i18n_template_key(suffix = nil)
       ikey = first_render_path_without_extension.tr('/', '.')
-      ikey = ikey + "." + suffix.to_s unless suffix.nil?      
+      ikey = ikey + "." + suffix.to_s if suffix.present?
       ikey
     end
 end
