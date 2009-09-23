@@ -85,16 +85,14 @@ module PageTitleHelper
     # internal variable, that's why it's "abstracted" away as well.
     #
     # Also ensure that the extensions (like <tt>.html.erb</tt> or
-    # <tt>.html.haml</tt>) have been stripped of.
-    def first_render_path_without_extension
-      p = @_first_render.template_path
-      p[0,p.index('.')]
+    # <tt>.html.haml</tt>) have been stripped of and translated in the sense
+    # of converting <tt>/</tt> to <tt>.</tt>.
+    def first_render_path_translated
+      @_first_render.template_path.gsub(/\.[^\/]*\Z/, '').tr('/', '.')
     end
     
     def i18n_template_key(suffix = nil)
-      ikey = first_render_path_without_extension.tr('/', '.')
-      ikey = ikey + "." + suffix.to_s if suffix.present?
-      ikey
+      first_render_path_translated + (suffix.present? ? ".#{suffix}" : "")
     end
 end
 
