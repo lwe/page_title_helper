@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'page_title_helper'
+require 'ostruct'
 
 class MockRender
   def initialize(template_path = 'contacts/index.html.erb')
@@ -118,5 +119,5 @@ class PageTitleHelperTest < ActiveSupport::TestCase
   test "ensure that it works with other template engines, like .html.haml" do
     view = MockView.new('contacts/myhaml.html.haml')
     assert_equal 'Page title helper - this is haml!', view.page_title
-  end
+  end  
 end

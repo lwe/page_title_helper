@@ -7,11 +7,12 @@
 #
 # See documentation for +page_title+ for usage examples and more informations.
 
-require 'ostruct'
-
 # PageTitleHelper
 module PageTitleHelper
   module Interpolations
+    # Represents the environment which is passed into each interpolation call.
+    class Env < Struct.new(:options, :view, :controller, :title); end
+    
     extend self
     
     def self.interpolate(pattern, *args)
@@ -53,23 +54,17 @@ module PageTitleHelper
     end
         
     options = PageTitleHelper.options.merge(options || {}).symbolize_keys!
+    options[:format] ||= ":title" # to handle :format => false
     options.assert_valid_keys(:app, :suffix, :default, :format)
-
-    # construct basic env to pass around
-    env = OpenStruct.new(:options => options, :view => self, :controller => self.controller)
     
-    # just return the applications name
-    return Interpolations.app(env) if options[:format] == :app
+    # construct basic env to pass around
+    env = Interpolations::Env.new(options, self, self.controller)
     
     # read page title
-    env.title = read_page_title_content_block
-    env.title = I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default]) if env.title.blank?
-    
-    # return page title if format is set explicitly set to false
-    return env.title if options[:format] == false
-    
-    # interpolate title
-    Interpolations.interpolate options[:format], env
+    env.title = read_page_title_content_block || I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default])
+  
+    # interpolate, if :format => :app, just interpolate ':app', neat :)
+    Interpolations.interpolate options[:format] == :app ? ':app' : options[:format], env
   end
   
   protected
