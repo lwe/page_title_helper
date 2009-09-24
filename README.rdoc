@@ -74,20 +74,9 @@ To access just the title, without any magic app stuff interpolated or appended, 
 
 == All options - explained
 
+*Option*::              *Description*::         *Default*::    *Values*
+<tt>:app</tt>::         Specify the applications name, however it's recemonded to define the translation key <tt>:'app.name'</tt>::   +RAILS_ROOT+::    string, symbol
 <table>
-<tr>
-<th>Option</th>
-<th>Description</th>
-<th>Default</th>
-<th>Values</th>
-</tr>
-<tr>
-<td><tt>:app</tt></td>
-<td>Specifiy the applications name, however it's recommended to define the
-translation key <tt>:'app.name'</tt>.</td>
-<td><tt>RAILS_ROOT</tt></td>
-<td>string, symbol</td>
-</tr>
 <tr>
 <td><tt>:default</tt></td>
 <td>String which is displayed when no translation exists and no custom title
