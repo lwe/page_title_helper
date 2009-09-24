@@ -75,43 +75,43 @@ To access just the title, without any magic app stuff interpolated or appended, 
 == All options - explained
 
 <table>
-  <tr>
-    <th>Option</th>
-    <th>Description</th>
-    <th>Default</th>
-    <th>Values</th>
-  </tr>
-  <tr>
-    <td><tt>:app</tt></td>
-    <td>Specifiy the applications name, however it's recommended to define the
-      translation key <tt>:'app.name'</tt>.</td>
-    <td><tt>RAILS_ROOT</tt></td>
-    <td>string, symbol</td>
-  </tr>
-  <tr>
-    <td><tt>:default</tt></td>
-    <td>String which is displayed when no translation exists and no custom title
-      has been specified. Can also be set to a symbol or array to take advantage of
-      <tt>I18n.translate</tt>s <tt>:default</tt> option.</td>
-    <td><tt>:'app.tagline'</tt></td>
-    <td>string, symbol or array of those</td>
-  </tr>
-  <tr>
-    <td><tt>:format</tt></td>
-    <td>Defines the output format, accepts a string containing multiple interpolations,
-      see <i>More fun with <tt>:format</tt></i>. If set to +false+, just the current title is returned.
-      If <tt>:format => :app</tt> then just the application name is returned.</td>
-    <td><tt>":app - :title"</tt></td>
-    <td>Any string, containg "formatting" patterns</td>
-  </tr>
-  <tr>
-    <td><tt>:suffix</tt></td>
-    <td>Not happy with the fact that the translations must be named like
-      <tt>en -> contacts -> index -> title</tt>, but prefer e.g. them to be suffixed with
-      <tt>page_title</tt>? Then just set <tt>:suffix => :page_title</tt>.</td>
-    <td><tt>:title</tt></td>
-    <td>symbol or string</td>
-  </tr>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
+<th>Values</th>
+</tr>
+<tr>
+<td><tt>:app</tt></td>
+<td>Specifiy the applications name, however it's recommended to define the
+translation key <tt>:'app.name'</tt>.</td>
+<td><tt>RAILS_ROOT</tt></td>
+<td>string, symbol</td>
+</tr>
+<tr>
+<td><tt>:default</tt></td>
+<td>String which is displayed when no translation exists and no custom title
+has been specified. Can also be set to a symbol or array to take advantage of
+<tt>I18n.translate</tt>s <tt>:default</tt> option.</td>
+<td><tt>:'app.tagline'</tt></td>
+<td>string, symbol or array of those</td>
+</tr>
+<tr>
+<td><tt>:format</tt></td>
+<td>Defines the output format, accepts a string containing multiple interpolations,
+see <i>More fun with <tt>:format</tt></i>. If set to +false+, just the current title is returned.
+If <tt>:format => :app</tt> then just the application name is returned.</td>
+<td><tt>":app - :title"</tt></td>
+<td>Any string, containg "formatting" patterns</td>
+</tr>
+<tr>
+<td><tt>:suffix</tt></td>
+<td>Not happy with the fact that the translations must be named like
+<tt>en -> contacts -> index -> title</tt>, but prefer e.g. them to be suffixed with
+<tt>page_title</tt>? Then just set <tt>:suffix => :page_title</tt>.</td>
+<td><tt>:title</tt></td>
+<td>symbol or string</td>
+</tr>
 </table>
 
 If an option should be set globally it's possible to change the default options hash as follows:
