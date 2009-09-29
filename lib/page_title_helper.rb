@@ -41,35 +41,37 @@ module PageTitleHelper
   # be changed globally, which might be useful in some cases.
   def self.options
     @options ||= {
-      :format => ':app - :title',
+      :format => :default,
       :default => :'app.tagline',
       :suffix => :title
     }
   end
   
   # Defined alias formats, pretty useful.
-  def self.formats; @formats ||= { :app => ":app" } end
+  def self.formats
+    @formats ||= {
+      :app => ":app",
+      :default => ':app - :title',
+      :title => ":title"
+    }
+  end
   
   def page_title(options = nil, &block)
     if block_given? # define title
       content_for(:page_title) { yield }
-      title = read_page_title_content_block
-      return title.is_a?(Array) ? title.first : title
+      return (title = read_page_title_content_block).is_a?(Array) ? title.first : title
     end
         
     options = PageTitleHelper.options.merge(options || {}).symbolize_keys!
-    options[:format] ||= ":title" # to handle :format => false
+    options[:format] ||= :title # handles :format => false
     options.assert_valid_keys(:app, :suffix, :default, :format)
     
     # construct basic env to pass around
     env = Interpolations::Env.new(options, self, self.controller)
     
-    # read page title
+    # read page title and split into 'real' title and customized format
     env.title = read_page_title_content_block || I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default])
-    if env.title.is_a?(Array)
-      options[:format] = env.title.second
-      env.title = env.title.first
-    end
+    env.title, options[:format] = *(env.title << options[:format]) if env.title.is_a?(Array)
     
     # handle format aliases
     format = options[:format]

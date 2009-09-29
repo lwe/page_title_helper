@@ -32,10 +32,22 @@ class MultipleFormatsTest < ActiveSupport::TestCase
       @view.page_title { "Test" }
       assert_equal "Test <-> Page title helper", @view.page_title(:format => :myformat)
     end
+        
+    should "fallback to default format, if array is not big enough (i.e. only contains single element...)" do
+      assert_equal "Test", @view.page_title { ["Test"] }
+      assert_equal "Page title helper - Test", @view.page_title
+    end
     
-    should "also allows aliases returned in that array thingy within page_title-blocks" do
-      assert_equal "Test", @view.page_title { ["Test", :myformat] }
-      assert_equal "Test <-> Page title helper", @view.page_title
+    context "used with the array block" do
+      should "also allow aliases returned in that array thingy" do
+        assert_equal "Test", @view.page_title { ["Test", :myformat] }
+        assert_equal "Test <-> Page title helper", @view.page_title
+      end 
+            
+      should "override locally supplied :format arguments" do
+        assert_equal "Something", @view.page_title { ["Something", "* * * :title * * *"] }
+        assert_equal "* * * Something * * *", @view.page_title(:format => "-= :title =-") # yeah, using x-tra ugly titles :)
+      end
     end
   end
 end
