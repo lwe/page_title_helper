@@ -15,6 +15,7 @@ begin
     gemspec.homepage = "http://github.com/lwe/page_title_helper"
     gemspec.authors = ["Lukas Westermann"]
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
