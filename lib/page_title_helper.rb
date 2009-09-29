@@ -16,7 +16,7 @@ module PageTitleHelper
     extend self
     
     def self.interpolate(pattern, *args)
-      instance_methods(false).sort.reverse.inject(pattern.dup) do |result, tag|
+      instance_methods(false).sort.reverse.inject(pattern.to_s.dup) do |result, tag|
         result.gsub(/:#{tag}/) do |match|
           send(tag, *args)
         end
@@ -47,10 +47,14 @@ module PageTitleHelper
     }
   end
   
+  # Defined alias formats, pretty useful.
+  def self.formats; @formats ||= { :app => ":app" } end
+  
   def page_title(options = nil, &block)
     if block_given? # define title
       content_for(:page_title) { yield }
-      return read_page_title_content_block
+      title = read_page_title_content_block
+      return title.is_a?(Array) ? title.first : title
     end
         
     options = PageTitleHelper.options.merge(options || {}).symbolize_keys!
@@ -62,9 +66,17 @@ module PageTitleHelper
     
     # read page title
     env.title = read_page_title_content_block || I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default])
-  
-    # interpolate, if :format => :app, just interpolate ':app', neat :)
-    Interpolations.interpolate options[:format] == :app ? ':app' : options[:format], env
+    if env.title.is_a?(Array)
+      options[:format] = env.title.second
+      env.title = env.title.first
+    end
+    
+    # handle format aliases
+    format = options[:format]
+    format = PageTitleHelper.formats[format] if PageTitleHelper.formats.include?(format)
+    
+    # interpolate format
+    Interpolations.interpolate format, env
   end
   
   protected
