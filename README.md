@@ -20,6 +20,19 @@ When `contacs/index.html.erb` is rendered, the key `:en, :contacts, :index, :tit
 is looked up and printed, together with the applications basename, like: `My cool app - Contacts`.
 The format etc. is of course configurable, just head down to the options.
 
+## Installation
+
+As gem (from gemcutter.org, since version 0.7.0):
+
+    sudo gem install page_title_helper [-s http://gemcutter.org]
+    
+    # then add the following line to config/environment.rb
+    config.gem 'page_title_helper', :source => 'http://gemcutter.org'
+    
+Or old school as Rails plugin:
+
+    ./script/plugin install git://github.com/lwe/page_title_helper.git
+
 ## Customize titles
 
 Need a custom title, or need to fill in some placeholders? Just provide a block, in e.g.
