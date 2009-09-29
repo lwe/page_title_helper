@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'yard'
 
 desc 'Default: run unit tests.'
 task :default => :test
@@ -25,12 +26,13 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
-desc 'Generate documentation for the page_title_helper plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'doc'
-  rdoc.title    = 'PageTitleHelper'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('lib/**/*.rb')
+desc 'Generate documentation for gravatarify. (requires yard)'
+YARD::Rake::YardocTask.new(:doc) do |t|
+  t.files = ['lib/**/*.rb']
+  t.options = [
+      "--readme", "README.md",
+      "--title", "page_title_helper API Documentation"
+  ]
 end
 
 namespace :metrics do
