@@ -1,0 +1,12 @@
+en:
+  app:
+    name: Wohaapp
+  pages:
+    features:
+      title:
+        - "Feature comparison"
+        - !ruby/sym promo
+    signup:
+      title:
+        - "Sign up"
+        - ":title for :app now!"

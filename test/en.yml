@@ -1,0 +1,11 @@
+en:
+  contacts:
+    list:
+      title: contacts.list.title
+      page_title: custom contacts title
+    myhaml:
+      title: this is haml!
+  placeholder: Displaying {{name}}
+  app:
+    tagline: Default
+    other_tagline: Other default

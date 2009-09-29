@@ -50,4 +50,22 @@ class MultipleFormatsTest < ActiveSupport::TestCase
       end
     end
   end
+  
+  context "#page_title, aliases and YAML" do
+    setup do
+      I18n.load_path = [File.join(File.dirname(__FILE__), "en_wohaapp.yml")]
+      I18n.reload!
+      PageTitleHelper.formats[:promo] = ":app > :title"
+    end
+    
+    should "allow to overide format through YAML" do
+      @view = MockView.new('pages/features.html.haml')      
+      assert_equal 'Wohaapp > Feature comparison', @view.page_title
+    end
+    
+    should "handle raw string formats from YAML as well" do
+      @view = MockView.new('pages/signup.html.haml')
+      assert_equal 'Sign up for Wohaapp now!', @view.page_title
+    end
+  end
 end

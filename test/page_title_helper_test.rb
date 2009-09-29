@@ -3,14 +3,13 @@ require 'page_title_helper'
 require 'ostruct'
 require 'mocks'
 
-# store translations
-I18n.backend.store_translations :en, :contacts => {
-  :list => { :title => 'contacts.list.title', :page_title => 'custom contacts title' },
-  :myhaml => { :title => 'this is haml!' }}
-I18n.backend.store_translations :en, :placeholder => 'Displaying {{name}}'
-I18n.backend.store_translations :en, :app => { :tagline => 'Default', :other_tagline => 'Other default' }
 
 class PageTitleHelperTest < ActiveSupport::TestCase  
+  def setup
+    I18n.load_path = [File.join(File.dirname(__FILE__), 'en.yml')]
+    I18n.reload!
+  end
+  
   test "interpolations" do    
     assert_equal 'Page title helper', PageTitleHelper::Interpolations.app(OpenStruct.new(:options => {}))
     assert_equal 'Appname', PageTitleHelper::Interpolations.app(OpenStruct.new(:options => { :app => 'Appname' }))
