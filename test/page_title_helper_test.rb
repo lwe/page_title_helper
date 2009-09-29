@@ -37,12 +37,12 @@ class PageTitleHelperTest < ActiveSupport::TestCase
   test "setting title to 'foo' returns 'foo'" do
     view = MockView.new
     view.page_title { "foo" }
-    assert_equal 'Page title helper - foo', view.page_title
+    assert_equal 'foo - Page title helper', view.page_title
   end
   
   test "reading defaults from I18n" do
     view = MockView.new 'contacts/list.html.erb'
-    assert_equal 'Page title helper - contacts.list.title', view.page_title
+    assert_equal 'contacts.list.title - Page title helper', view.page_title
   end
   
   test "printing app name only if :format => :app" do
@@ -80,31 +80,31 @@ class PageTitleHelperTest < ActiveSupport::TestCase
   test "custom title using a translation with a placeholder" do
     view = MockView.new
     view.page_title { I18n.t :placeholder, :name => 'Bella' }
-    assert_equal "Page title helper - Displaying Bella", view.page_title
+    assert_equal "Displaying Bella - Page title helper", view.page_title
   end
   
   test "render translated :'app.tagline' if no title is available" do
     view = MockView.new 'view/does/not_exist.html.erb'
-    assert_equal "Page title helper - Default", view.page_title
+    assert_equal "Default - Page title helper", view.page_title
   end
   
   test "render custom 'default' string, if title is not available" do
     view = MockView.new 'view/does/not_exist.html.erb'
-    assert_equal 'Page title helper - Some default', view.page_title(:default => 'Some default')
+    assert_equal 'Some default - Page title helper', view.page_title(:default => 'Some default')
   end
   
   test "render custom default translation, if title is not available" do
     view = MockView.new 'view/does/not_exist.html.erb'
-    assert_equal 'Page title helper - Other default', view.page_title(:default => :'app.other_tagline')
+    assert_equal 'Other default - Page title helper', view.page_title(:default => :'app.other_tagline')
   end
   
   test "render auto-title using custom suffix 'page_title'" do
     view = MockView.new 'contacts/list.html.erb'
-    assert_equal 'Page title helper - custom contacts title', view.page_title(:suffix => :page_title)
+    assert_equal 'custom contacts title - Page title helper', view.page_title(:suffix => :page_title)
   end
   
   test "ensure that it works with other template engines, like .html.haml" do
     view = MockView.new('contacts/myhaml.html.haml')
-    assert_equal 'Page title helper - this is haml!', view.page_title
+    assert_equal 'this is haml! - Page title helper', view.page_title
   end  
 end

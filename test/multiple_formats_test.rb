@@ -35,7 +35,7 @@ class MultipleFormatsTest < ActiveSupport::TestCase
         
     should "fallback to default format, if array is not big enough (i.e. only contains single element...)" do
       assert_equal "Test", @view.page_title { ["Test"] }
-      assert_equal "Page title helper - Test", @view.page_title
+      assert_equal "Test - Page title helper", @view.page_title
     end
     
     context "used with the array block" do

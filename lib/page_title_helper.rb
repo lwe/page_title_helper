@@ -51,7 +51,7 @@ module PageTitleHelper
   def self.formats
     @formats ||= {
       :app => ":app",
-      :default => ':app - :title',
+      :default => ':title - :app',
       :title => ":title"
     }
   end
