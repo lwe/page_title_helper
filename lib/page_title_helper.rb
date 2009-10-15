@@ -11,7 +11,7 @@
 module PageTitleHelper
   module Interpolations
     # Represents the environment which is passed into each interpolation call.
-    class Env < Struct.new(:options, :view, :controller, :title); end
+    class TitleEnv < Struct.new(:options, :view, :controller, :title); end
     
     extend self
     
@@ -67,7 +67,7 @@ module PageTitleHelper
     options.assert_valid_keys(:app, :suffix, :default, :format)
     
     # construct basic env to pass around
-    env = Interpolations::Env.new(options, self, self.controller)
+    env = Interpolations::TitleEnv.new(options, self, self.controller)
     
     # read page title and split into 'real' title and customized format
     env.title = read_page_title_content_block || I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default])
