@@ -58,8 +58,8 @@ module PageTitleHelper
   
   def page_title(options = nil, &block)
     if block_given? # define title
-      content_for(:page_title) { yield }
-      return (title = read_page_title_content_block).is_a?(Array) ? title.first : title
+      @_page_title = yield
+      return @_page_title.is_a?(Array) ? @_page_title.first : @_page_title
     end
         
     options = PageTitleHelper.options.merge(options || {}).symbolize_keys!
@@ -70,7 +70,7 @@ module PageTitleHelper
     env = Interpolations::TitleEnv.new(options, self, self.controller)
     
     # read page title and split into 'real' title and customized format
-    env.title = read_page_title_content_block || I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default])
+    env.title = @_page_title || I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default])
     env.title, options[:format] = *(env.title << options[:format]) if env.title.is_a?(Array)
     
     # handle format aliases
@@ -81,18 +81,7 @@ module PageTitleHelper
     Interpolations.interpolate format, env
   end
   
-  protected
-    
-    # Access <tt>@content_for_page_title</tt> variable, though this is a tad
-    # hacky, because... what if they (the rails guys) change the behaviour of
-    # <tt>content_for</tt>? Well, in Rails 2.3.x it works so far.
-    #
-    # But to simplify compatibility with later versions, this method kinda abstracts
-    # away access to the content within a <tt>content_for</tt> block.
-    def read_page_title_content_block
-      instance_variable_get(:'@content_for_page_title')
-    end
-    
+  protected    
     # Access +ActionView+s internal <tt>@_first_render</tt> variable, to access
     # template first rendered, this is to help create the DRY-I18n-titles magic,
     # and also kind of a hack, because this really seems to be some sort if
