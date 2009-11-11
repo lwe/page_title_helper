@@ -11,7 +11,7 @@
 module PageTitleHelper
   module Interpolations
     # Represents the environment which is passed into each interpolation call.
-    class TitleEnv < Struct.new(:options, :view, :controller, :title); end
+    class TitleEnv < ::Struct.new(:options, :view, :controller, :title); end
     
     extend self
     
