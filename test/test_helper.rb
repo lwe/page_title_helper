@@ -1,8 +1,9 @@
 require 'rubygems'
 require 'active_support'
 require 'action_view'
+require File.join(File.dirname(__FILE__), '..', 'rails', 'init')
 
-unless Object.const_defined?('IRB')
+unless defined?(IRB)
   require 'active_support/test_case'
   require 'shoulda'
   require 'rr'

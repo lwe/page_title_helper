@@ -1,7 +1,6 @@
 require 'test_helper'
 require 'page_title_helper'
 require 'ostruct'
-require 'mocks'
 
 class PageTitleHelperTest < ActiveSupport::TestCase
   context "PageTitleHelper" do
@@ -76,11 +75,9 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       end
 
       should "use custom format, if :format option is defined" do
-        view = MockView.new
-        view.page_title { "test" }
-
-        assert_equal "Some app :: test", view.page_title(:app => "Some app", :format => ':app :: :title')
-        assert_equal "Some app / test", view.page_title(:format => 'Some app / :title')
+        assert_equal 'test', @view.page_title { "test" }
+        assert_equal "Some app :: test", @view.page_title(:app => "Some app", :format => ':app :: :title')
+        assert_equal "Some app / test", @view.page_title(:format => 'Some app / :title')
       end
 
       should "return just title if :format => false is passed" do
