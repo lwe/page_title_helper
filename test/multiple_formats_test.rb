@@ -1,11 +1,11 @@
 require 'test_helper'
 require 'page_title_helper'
-require 'mocks'
 
 class MultipleFormatsTest < ActiveSupport::TestCase  
   context "#page_title supporting multiple formats through arrays" do
     setup do
-      @view = MockView.new
+      @view = ActionView::Base.new
+      @view.template = ActionView::Template.new "contacts/list.html.erb"      
     end
     
     should "accept an array passed in the page_title block and use the second argument as format" do
@@ -21,7 +21,8 @@ class MultipleFormatsTest < ActiveSupport::TestCase
   context "#page_title with format aliases" do
     setup do
       PageTitleHelper.formats[:myformat] = ":title <-> :app"      
-      @view = MockView.new
+      @view = ActionView::Base.new
+      @view.template = ActionView::Template.new "contacts/list.html.erb"      
     end
     
     should "have a default alias named :app" do
@@ -56,15 +57,16 @@ class MultipleFormatsTest < ActiveSupport::TestCase
       I18n.load_path = [File.join(File.dirname(__FILE__), "en_wohaapp.yml")]
       I18n.reload!
       PageTitleHelper.formats[:promo] = ":app > :title"
+      @view = ActionView::Base.new
     end
     
     should "allow to overide format through YAML" do
-      @view = MockView.new('pages/features.html.haml')      
+      mock(@view).template { ActionView::Template.new 'pages/features.html.haml' }
       assert_equal 'Wohaapp > Feature comparison', @view.page_title
     end
     
     should "handle raw string formats from YAML as well" do
-      @view = MockView.new('pages/signup.html.haml')
+      mock(@view).template { ActionView::Template.new 'pages/signup.html.haml' }
       assert_equal 'Sign up for Wohaapp now!', @view.page_title
     end
   end
