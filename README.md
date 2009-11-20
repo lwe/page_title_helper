@@ -22,34 +22,33 @@ The format etc. is of course configurable, just head down to the options.
 
 ## Installation
 
-As gem (from gemcutter.org, since version 0.7.0):
+As gem (from gemcutter.org, as of version 0.7.0):
 
     sudo gem install page_title_helper [-s http://gemcutter.org]
     
     # then add the following line to config/environment.rb
     config.gem 'page_title_helper', :source => 'http://gemcutter.org'
     
-Or old school as Rails plugin:
+or as plain old Rails plugin:
 
     ./script/plugin install git://github.com/lwe/page_title_helper.git
 
 ## Customize titles
 
-Need a custom title, or need to fill in some placeholders? Just provide a block, in e.g.
+Need a custom title, or need to fill in some placeholders? Just use the _bang_ method (`page_title!`), in e.g.
 `contacts/show.html.erb` the requirement is to display the contacts name in the
 `<title>-tag`as well as in the heading?
 
-    <h1><%=h page_title { @contact.name } %></h1>
+    <h1><%=h page_title!(@contact.name) %></h1>
     
 A call to `page_title` will now return the contacts name, neat :) if for example the
-`<h1>` does not match the +title+, then
-well, just do something like:
+`<h1>` does not match the `<title>`, then well, just do something like:
 
-    <% page_title { @contact.name + " (" + @contact.company.name + ")" } %>
+    <% page_title!(@contact.name + " (" + @contact.company.name + ")") %>
     <h1><%=h @contact.name %></h1>
     
-Guess, that's it. Of course it's also possible to use `translate` within the `page_title` block, so
-to translate customzied titles, like:
+Guess, that's it. Of course it's also possible to use `translate` with `page_title!`, to
+translate customzied titles, like:
 
     # in config/locales/en.yml:
     en:
@@ -58,10 +57,7 @@ to translate customzied titles, like:
           title: "Welcome back, {{name}}"
 
     # in app/views/dashboard/index.html.erb:
-    <h1><%=h page_title { t '.title', :name => @user.first_name } %></h1>
-    
-Btw - a helpful rule-of-thumb: if `page_title` is used with a block a title is **defined**,
-if it's used without the current title is rendered.
+    <h1><%=h page_title!(t('.title', :name => @user.first_name)) %></h1>
 
 ## More fun with <tt>:format</tt>
 
@@ -82,16 +78,16 @@ controller:
     
 To access just the title, without any magic app stuff interpolated or appended, use:
 
-    page_title { "untitled" }
+    page_title! "untitled"
     page_title :format => false # => "untitled"
     
 Need a custom format for a single title? Just return an array:
 
     # in the view:
-    <h1><%= h(page_title { [@contact.name, ":title from :company - :app"] } %></h1> # => <h1>Franz Meyer</h1>
+    <h1><%=h page_title!(@contact.name, ":title from :company - :app") %></h1> # => <h1>Franz Meyer</h1>
     
     # in the <head>
-    <title><%= h(page_title) %></title> # => this time it will use custom title like "Franz Meyer from ABC Corp. - MyCoolApp"
+    <title><%=h(page_title) %></title> # => this time it will use custom title like "Franz Meyer from ABC Corp. - MyCoolApp"
     
 To streamline that feature a bit and simplify reuse of often used formats, it's now possible to define format aliases like:
 
@@ -100,7 +96,7 @@ To streamline that feature a bit and simplify reuse of often used formats, it's 
     PageTitleHelper.formats[:promo] = ":app - :title" # show app first for promo pages :)
     
     # then in the view to display a contact...
-    page_title { [@contact.name, :with_company] }
+    page_title! @contact.name, :with_company
     
     # ...or for the promo page via config/locales/en.yml (!)
     en:
@@ -109,8 +105,7 @@ To streamline that feature a bit and simplify reuse of often used formats, it's 
           title:
             - "Features comparison"
             - !ruby/sym promo
-    
-    
+
 Pretty, cool, aint it? The special `:format => :app` works also with the `formats` hash. Then there is also a
 `:default` format, which should be used to override the default format.
 
