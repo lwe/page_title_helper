@@ -61,12 +61,12 @@ class MultipleFormatsTest < ActiveSupport::TestCase
     end
     
     should "allow to overide format through YAML" do
-      mock(@view).template { ActionView::Template.new 'pages/features.html.haml' }
+      @view.template = 'pages/features.html.haml'
       assert_equal 'Wohaapp > Feature comparison', @view.page_title
     end
     
     should "handle raw string formats from YAML as well" do
-      mock(@view).template { ActionView::Template.new 'pages/signup.html.haml' }
+      @view.template = 'pages/signup.html.haml'
       assert_equal 'Sign up for Wohaapp now!', @view.page_title
     end
   end

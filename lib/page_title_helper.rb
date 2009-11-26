@@ -9,6 +9,8 @@
 
 # PageTitleHelper
 module PageTitleHelper
+
+  # http://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/interpolations.rb
   module Interpolations
     # Represents the environment which is passed into each interpolation call.
     class TitleEnv < ::Struct.new(:options, :view, :controller, :title); end
@@ -86,10 +88,17 @@ module PageTitleHelper
   
   protected
   
-    # Find current title key based on currently rendering template, same
-    # code as in {ActionView::Helpers::TranslationHelpers} to get that <tt>'.relative_key'</tt>
-    # magic working.
-    def i18n_template_key(suffix = :title)
-      template.path_without_format_and_extension.gsub(%r{/_?}, '.') + ".#{suffix}"
+    # Find current title key based on currently rendering template.
+    #
+    # Access +ActionView+s internal <tt>@_first_render</tt> variable, to access
+    # template first rendered, this is to help create the DRY-I18n-titles magic,
+    # and also kind of a hack, because this really seems to be some sort if
+    # internal variable, that's why it's "abstracted" away as well.
+    #
+    # Also ensure that the extensions (like <tt>.html.erb</tt> or
+    # <tt>.html.haml</tt>) have been stripped of and translated in the sense
+    # of converting <tt>/</tt> to <tt>.</tt>.
+    def i18n_template_key(suffix = nil)
+      @_first_render.template_path.gsub(/\.[^\/]*\Z/, '').tr('/', '.') + (suffix.present? ? ".#{suffix}" : "")
     end
 end
