@@ -119,7 +119,7 @@ Pretty, cool, aint it? The special `:format => :app` works also with the `format
     <td><tt>:app</tt></td>
     <td>Specify the applications name, however it's
         recommended to define the translation key <tt>:'app.name'</tt>.</td>
-    <td>Inflected from <tt>RAILS_ROOT</tt></td>
+    <td>Inflected from <tt>Rails.root</tt></td>
     <td>string</td>
   </tr>
   <tr>
