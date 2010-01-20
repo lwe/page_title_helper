@@ -14,6 +14,11 @@ begin
     gemspec.email = "lukas.westermann@gmail.com"
     gemspec.homepage = "http://github.com/lwe/page_title_helper"
     gemspec.authors = ["Lukas Westermann"]
+    
+    gemspec.add_dependency('rails', '>= 2.3.0')
+    
+    gemspec.add_development_dependency('shoulda', '>= 2.10.2')
+    gemspec.add_development_dependency('rr', '>= 0.10.5')
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
