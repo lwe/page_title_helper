@@ -11,10 +11,7 @@
 module PageTitleHelper
 
   # http://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/interpolations.rb
-  module Interpolations
-    # Represents the environment which is passed into each interpolation call.
-    class TitleEnv < ::Struct.new(:options, :view, :controller, :title); end
-    
+  module Interpolations    
     extend self
     
     def self.interpolate(pattern, *args)
@@ -26,11 +23,11 @@ module PageTitleHelper
     end
     
     def app(env)
-      env.options[:app] || I18n.translate(:'app.name', :default => File.basename(RAILS_ROOT).humanize)
+      env[:app] || I18n.translate(:'app.name', :default => File.basename(Rails.root).humanize)
     end
     
     def title(env)
-      env.title
+      env[:title]
     end
   end
   
@@ -70,20 +67,20 @@ module PageTitleHelper
     options = PageTitleHelper.options.merge(options || {}).symbolize_keys!
     options[:format] ||= :title # handles :format => false
     options.assert_valid_keys(:app, :suffix, :default, :format)
-    
-    # construct basic env to pass around
-    env = Interpolations::TitleEnv.new(options, self, self.controller)
-    
+        
     # read page title and split into 'real' title and customized format
-    env.title = @_page_title || I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default])
-    env.title, options[:format] = *(env.title << options[:format]) if env.title.is_a?(Array)
-    
+    title = @_page_title || I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default])
+    title, options[:format] = *(title << options[:format]) if title.is_a?(Array)
+        
     # handle format aliases
-    format = options[:format]
+    format = options.delete(:format)
     format = PageTitleHelper.formats[format] if PageTitleHelper.formats.include?(format)
     
+    # construct basic env to pass around
+    env = { :title => title, :app => options.delete(:app), :options => options, :view => self }
+    
     # interpolate format
-    Interpolations.interpolate format, env
+    Interpolations.interpolate(format, env)
   end
   
   protected

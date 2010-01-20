@@ -14,17 +14,17 @@ class PageTitleHelperTest < ActiveSupport::TestCase
   
     context "::Interpolations" do
       should "interpolate :app and :title" do    
-        assert_equal 'Page title helper', PageTitleHelper::Interpolations.app(OpenStruct.new(:options => {}))
-        assert_equal 'Appname', PageTitleHelper::Interpolations.app(OpenStruct.new(:options => { :app => 'Appname' }))
-        assert_equal 'untitled', PageTitleHelper::Interpolations.title(OpenStruct.new({:title => 'untitled'}))
+        assert_equal 'Page title helper', PageTitleHelper::Interpolations.app({})
+        assert_equal 'Appname', PageTitleHelper::Interpolations.app({ :app => 'Appname' })
+        assert_equal 'untitled', PageTitleHelper::Interpolations.title({:title => 'untitled'})
       end
 
       should "allow adding custom interpolations" do
         # extend Interpolations
         PageTitleHelper.interpolates(:app_reverse) { |env| app(env).reverse.downcase }
   
-        assert_equal "anna", PageTitleHelper::Interpolations.app_reverse(OpenStruct.new(:options => { :app => 'Anna' }))
-        assert_equal "ppa", PageTitleHelper::Interpolations.interpolate(':app_reverse', OpenStruct.new(:options => { :app => 'app' }))
+        assert_equal "anna", PageTitleHelper::Interpolations.app_reverse({ :app => 'Anna' })
+        assert_equal "ppa", PageTitleHelper::Interpolations.interpolate(':app_reverse', { :app => 'app' })
       end
 
       should "interpolate in correct order, i.e. longest first" do
@@ -32,7 +32,7 @@ class PageTitleHelperTest < ActiveSupport::TestCase
         PageTitleHelper.interpolates(:foobar_test) { "foobar_test" }
         PageTitleHelper.interpolates(:title_foobar) { "title_foobar" }
     
-        assert_equal "title_foobar / foobar_test / foobar / foobar_x", PageTitleHelper::Interpolations.interpolate(":title_foobar / :foobar_test / :foobar / :foobar_x", nil)
+        assert_equal "title_foobar / foobar_test / foobar / foobar_x", PageTitleHelper::Interpolations.interpolate(":title_foobar / :foobar_test / :foobar / :foobar_x", {})
       end
     end
   

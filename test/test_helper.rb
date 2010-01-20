@@ -11,10 +11,14 @@ unless defined?(IRB)
   Test::Unit::TestCase.send(:include, RR::Adapters::TestUnit)
 end
 
-ROOT = File.expand_path File.dirname(File.dirname(__FILE__))
-RAILS_ROOT = '/this/is/just/for/testing/page_title_helper'
-RAILS_ENV = 'test'
+# fake global rails object
+Rails = Object.new
+Rails.class_eval do
+  def root; @pathname ||= Pathname.new('/this/is/just/for/testing/page_title_helper') end
+  def env; "test" end
+end
 
+# kinda hack ActionView a bit to allow easy (fake) template assignment
 class ActionView::Base
   def template=(template)
     @_first_render = template.respond_to?(:template_path) ? template : ActionView::Template.new(template)
