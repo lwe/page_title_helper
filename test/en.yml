@@ -5,7 +5,7 @@ en:
       page_title: custom contacts title
     myhaml:
       title: this is haml!
-  placeholder: Displaying {{name}}
+  placeholder: "Displaying %{name}"
   app:
     tagline: Default
     other_tagline: Other default

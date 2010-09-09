@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'active_support'
 require 'action_view'
-require File.join(File.dirname(__FILE__), '..', 'rails', 'init')
+require File.join(File.dirname(__FILE__), '..', 'init')
 
 unless defined?(IRB)
   require 'active_support/test_case'
@@ -21,7 +21,7 @@ end
 # kinda hack ActionView a bit to allow easy (fake) template assignment
 class ActionView::Base
   def template=(template)
-    @_first_render = template.respond_to?(:template_path) ? template : ActionView::Template.new(template)
+    @_first_render = !template.respond_to?(:to_str) ? template : ActionView::Template.new(template, nil, nil, { :virtual_path => template })
   end
   alias_method :template_path=, :template=
 end

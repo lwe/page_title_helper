@@ -5,7 +5,7 @@ class MultipleFormatsTest < ActiveSupport::TestCase
   context "#page_title supporting multiple formats through arrays" do
     setup do
       @view = ActionView::Base.new
-      @view.template = ActionView::Template.new "contacts/list.html.erb"      
+      @view.template = "contacts/list.html.erb"
     end
     
     should "accept an array passed in the page_title block and use the second argument as format" do
@@ -22,7 +22,7 @@ class MultipleFormatsTest < ActiveSupport::TestCase
     setup do
       PageTitleHelper.formats[:myformat] = ":title <-> :app"      
       @view = ActionView::Base.new
-      @view.template = ActionView::Template.new "contacts/list.html.erb"      
+      @view.template = "contacts/list.html.erb"
     end
     
     should "have a default alias named :app" do

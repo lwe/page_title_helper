@@ -96,6 +96,13 @@ module PageTitleHelper
     # <tt>.html.haml</tt>) have been stripped of and translated in the sense
     # of converting <tt>/</tt> to <tt>.</tt>.
     def i18n_template_key(suffix = nil)
-      @_first_render.template_path.gsub(/\.[^\/]*\Z/, '').tr('/', '.') + (suffix.present? ? ".#{suffix}" : "")
+      @_first_render.virtual_path.gsub(/\.[^\/]*\Z/, '').tr('/', '.') + (suffix.present? ? ".#{suffix}" : "")
     end
+end
+
+# include helper methods in ActionView
+if ActiveSupport.respond_to?(:on_load)
+  ActiveSupport.on_load(:action_view) { include PageTitleHelper }
+elsif defined?(ActionView)
+  ActionView::Base.send(:include, PageTitleHelper)
 end
