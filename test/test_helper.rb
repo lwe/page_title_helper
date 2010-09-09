@@ -22,6 +22,7 @@ end
 class ActionView::Base
   def template=(template)
     @_first_render = !template.respond_to?(:to_str) ? template : ActionView::Template.new(template, nil, nil, { :virtual_path => template })
+    @_virtual_path = template
   end
   alias_method :template_path=, :template=
 end
