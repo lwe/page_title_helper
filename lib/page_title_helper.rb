@@ -41,8 +41,7 @@ module PageTitleHelper
   def self.options
     @options ||= {
       :format => :default,
-      :default => :'app.tagline',
-      :suffix => :title
+      :default => :'app.tagline'
     }
   end
   
@@ -66,10 +65,10 @@ module PageTitleHelper
         
     options = PageTitleHelper.options.merge(options || {}).symbolize_keys!
     options[:format] ||= :title # handles :format => false
-    options.assert_valid_keys(:app, :suffix, :default, :format)
+    options.assert_valid_keys(:app, :default, :format)
         
     # read page title and split into 'real' title and customized format
-    title = @_page_title || page_title_from_translation(options[:default], options[:suffix])
+    title = @_page_title || page_title_from_translation(options[:default])
     title, options[:format] = *(title << options[:format]) if title.is_a?(Array)
         
     # handle format aliases
@@ -87,15 +86,14 @@ module PageTitleHelper
   
     # Find translation for `controller.action.title` combination, falls back to
     # `controller.title` or supplied default if no title was found.
-    def page_title_from_translation(default, suffix = :title)
+    def page_title_from_translation(default)
       base = controller.controller_path.tr('/', '.')
-      action = params[:action]
-      suffix = ".#{suffix || 'title'}"
+      action = params[:action].to_s
       
-      keys = [:"#{base}.#{action}#{suffix}"]
-      keys << :"#{base}.new#{suffix}" if action == 'create'
-      keys << :"#{base}.edit#{suffix}" if action == 'update'
-      keys << :"#{base}#{suffix}"
+      keys = [:"#{base}.#{action}.title"]
+      keys << :"#{base}.new.title" if action == 'create'
+      keys << :"#{base}.edit.title" if action == 'update'
+      keys << :"#{base}.title"
       keys << default
       
       I18n.translate(keys.shift, :default => keys)
