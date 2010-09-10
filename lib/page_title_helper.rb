@@ -6,9 +6,13 @@
 # Licence:: MIT-Licence (http://www.opensource.org/licenses/mit-license.php)
 #
 # See documentation for +page_title+ for usage examples and more informations.
+require 'active_support'
 
 # PageTitleHelper
 module PageTitleHelper
+
+  # Page title version number
+  VERSION = "2.0.0".freeze
 
   # http://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/interpolations.rb
   module Interpolations    
