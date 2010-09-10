@@ -6,19 +6,30 @@ require 'yard'
 desc 'Default: run unit tests.'
 task :default => :test
 
+def version
+  defined?(PageTitleHelper) ? PageTitleHelper::VERSION : "0.0.0.error"
+end
+
+begin
+  require File.join(File.dirname(__FILE__), 'lib', 'page_title_helper')
+rescue
+  puts "Oops, there was en error loading page_title_helper.rb"
+end
+
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "page_title_helper"
+    gemspec.version = version
     gemspec.summary = "Simple, internationalized and DRY page titles and headings for rails."
     gemspec.email = "lukas.westermann@gmail.com"
     gemspec.homepage = "http://github.com/lwe/page_title_helper"
     gemspec.authors = ["Lukas Westermann"]
     
-    gemspec.add_dependency('rails', '>= 2.3.0')
+    gemspec.files.reject! { |f| f =~ /\.gemspec$/ }
     
-    gemspec.add_development_dependency('shoulda', '>= 2.10.2')
-    gemspec.add_development_dependency('rr', '>= 0.10.5')
+    gemspec.add_dependency('rails', '>= 3.0.0')
+    gemspec.add_development_dependency('shoulda')
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
@@ -37,7 +48,7 @@ YARD::Rake::YardocTask.new(:doc) do |t|
   t.files = ['lib/**/*.rb']
   t.options = [
       "--readme", "README.md",
-      "--title", "page_title_helper API Documentation"
+      "--title", "page_title_helper API v#{version} Documentation"
   ]
 end
 
