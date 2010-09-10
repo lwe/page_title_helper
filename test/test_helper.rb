@@ -6,9 +6,6 @@ require File.join(File.dirname(__FILE__), '..', 'init')
 unless defined?(IRB)
   require 'active_support/test_case'
   require 'shoulda'
-  require 'rr'
-  # enable RR to use all the mocking magic, uweee!
-  Test::Unit::TestCase.send(:include, RR::Adapters::TestUnit)
 end
 
 # fake global rails object
