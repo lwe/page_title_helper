@@ -4,6 +4,9 @@ Ever wondered if there was an easier and DRY-way to set your page titles (and/or
 introducing _page title helper_, a small Rails 3 view helper to inflect titles from controllers
 & actions.
 
+**Note:** for Rails 2.x please use version 1.0.1: `gem install page_title_helper -v 1.0.1`, because
+the latest versions are no longer compatible with Rails 2.x.
+
 In your layout add this to your `<head>`-section:
 
       ...
