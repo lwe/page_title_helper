@@ -1,37 +1,51 @@
 # Page title helper
 
-Ever wondered if there was an easier and DRY-way to set your page titles (and/or headings). Backed
-by Rails (only tested on 2.3.x) and it's new `I18n`-class the solution is a simple helper method.
+Ever wondered if there was an easier and DRY-way to set your page titles (and/or headings),
+introducing _page title helper_, a small Rails 3 view helper to inflect titles from controllers
+& actions.
 
-In your layout add this to your `<head>-section`:
+In your layout add this to your `<head>`-section:
 
       ...
-      <title><%=h page_title %></title>
+      <title><%= page_title %></title>
       ...
       
-That's it. Now just add your translations, to the locales, in e.g. `config/locales/en.yml`:
+That's it. Now just add translations, in e.g. `config/locales/en.yml`:
 
       en:
         contacts:
           index:
             title: "Contacts"
             
-When `contacs/index.html.erb` is rendered, the key `:en, :contacts, :index, :title`
-is looked up and printed, together with the applications basename, like: `My cool app - Contacts`.
+When `/contacs/` is requested, the key `:en, :contacts, :index, :title`
+is looked up and printed, together with the applications basename, like: `Contacts - My cool App`.
 The format etc. is of course configurable, just head down to the options.
 
 ## Installation
 
-As gem (from gemcutter.org, as of version 0.7.0):
+As gem (from rubygems.org):
 
-    sudo gem install page_title_helper [-s http://gemcutter.org]
+    # then add the following line to Gemfile
+    gem 'page_title_helper'
     
-    # then add the following line to config/environment.rb
-    config.gem 'page_title_helper', :source => 'http://gemcutter.org'
+    # living on the bleeding edge?
+    gem 'page_title_helper', :git => 'git://github.com/lwe/page_title_helper.git'
     
 or as plain old Rails plugin:
 
-    ./script/plugin install git://github.com/lwe/page_title_helper.git
+    rails plugin install git://github.com/lwe/page_title_helper.git
+
+## Translated titles
+
+All translated titles are inflected from the current controller and action, so to
+easily explain all lookups, here an example with the corresponding lookups:
+
+    Admin::AccountController#index => :'admin.account.index.title'
+                                      :'admin.account.title'
+                                      options[:default]
+
+For `create` and `update` a further fallback to `new.title` and `edit.title` have
+been added, because they certainly are duplicates.
 
 ## Customize titles
 
@@ -39,16 +53,16 @@ Need a custom title, or need to fill in some placeholders? Just use the _bang_ m
 `contacts/show.html.erb` the requirement is to display the contacts name in the
 `<title>-tag`as well as in the heading?
 
-    <h1><%=h page_title!(@contact.name) %></h1>
+    <h1><%= page_title!(@contact.name) %></h1>
     
 A call to `page_title` will now return the contacts name, neat :) if for example the
 `<h1>` does not match the `<title>`, then well, just do something like:
 
     <% page_title!(@contact.name + " (" + @contact.company.name + ")") %>
-    <h1><%=h @contact.name %></h1>
+    <h1><%= @contact.name %></h1>
     
-Guess, that's it. Of course it's also possible to use `translate` with `page_title!`, to
-translate customzied titles, like:
+Guess, that's it. Of course it's also possible to use `translate` within `page_title!`, to
+translate custom titles, like:
 
     # in config/locales/en.yml:
     en:
@@ -57,7 +71,7 @@ translate customzied titles, like:
           title: "Welcome back, {{name}}"
 
     # in app/views/dashboard/index.html.erb:
-    <h1><%=h page_title!(t('.title', :name => @user.first_name)) %></h1>
+    <h1><%= page_title!(t('.title', :name => @user.first_name)) %></h1>
 
 ## More fun with <tt>:format</tt>
 
@@ -71,7 +85,7 @@ Adding custom interpolations is as easy as defining a block, for example to acce
 controller:
 
     PageTitleHelper.interpolates :controller do |env|
-      env.controller.controller_name.humanize
+      env[:view].controller.controller_name.humanize
     end
     
     page_title :format => ':title / :controller / :app' # => "Welcome back / Dashboard / My cool app"
@@ -84,14 +98,14 @@ To access just the title, without any magic app stuff interpolated or appended, 
 Need a custom format for a single title? Just return an array:
 
     # in the view:
-    <h1><%=h page_title!(@contact.name, ":title from :company - :app") %></h1> # => <h1>Franz Meyer</h1>
+    <h1><%= page_title!(@contact.name, ":title from :company - :app") %></h1> # => <h1>Franz Meyer</h1>
     
     # in the <head>
-    <title><%=h(page_title) %></title> # => this time it will use custom title like "Franz Meyer from ABC Corp. - MyCoolApp"
+    <title><%= page_title %></title> # => this time it will use custom title like "Franz Meyer from ABC Corp. - My cool app"
     
-To streamline that feature a bit and simplify reuse of often used formats, it's now possible to define format aliases like:
+To streamline that feature a bit and simplify reuse of often used formats, it's possible to define format aliases like:
 
-    # in an initializer:
+    # in an initializer, e.g. config/initializers/page_title_helper.rb:
     PageTitleHelper.formats[:with_company] = ":title from :company - :app"
     PageTitleHelper.formats[:promo] = ":app - :title" # show app first for promo pages :)
     
@@ -106,8 +120,8 @@ To streamline that feature a bit and simplify reuse of often used formats, it's 
             - "Features comparison"
             - !ruby/sym promo
 
-Pretty, cool, aint it? The special `:format => :app` works also with the `formats` hash. Then there is also a
-`:default` format, which should be used to override the default format.
+Pretty, cool, aint it? The special `:format => :app` works also via the `formats` hash. Then there is also a
+`:default` format, which can be used to override the default format.
 
 ## All options - explained
 
@@ -118,7 +132,7 @@ Pretty, cool, aint it? The special `:format => :app` works also with the `format
   <tr>
     <td><tt>:app</tt></td>
     <td>Specify the applications name, however it's
-        recommended to define the translation key <tt>:'app.name'</tt>.</td>
+        recommended to define it via translation key <tt>:'app.name'</tt>.</td>
     <td>Inflected from <tt>Rails.root</tt></td>
     <td>string</td>
   </tr>
@@ -138,22 +152,12 @@ Pretty, cool, aint it? The special `:format => :app` works also with the `format
     <td><tt>:default</tt></td>
     <td>string, symbol</td>
   </tr>
-  <tr>
-    <td><tt>:suffix</tt></td>
-    <td>Not happy with the fact that the translations must be named like
-        <tt>en -> contacts -> index -> title</tt>, but prefer e.g. them to be suffixed with
-        <tt>page_title</tt>? Then just set <tt>:suffix => :page_title</tt>.</td>
-    <td><tt>:title</tt></td>
-    <td>symbol or string</td>
-  </tr>
 </table>
 </p>
 
-If an option should be set globally it's possible to change the default options hash as follows:
+Options can be set globally via `PageTitleHelper.options`. Note, currently it only
+makes sense to set `:default` globally.
 
-    PageTitleHelper.options[:suffix] = :page_title
-    
-Note, currently it only makes sense to set `:default` and/or `:page_title` globally.
 To add or change formats use:
 
     # change the default format used (if no format is specified):
@@ -162,17 +166,19 @@ To add or change formats use:
     # add a custom format alias (which can be used with page_title(:format => :promo))
     PageTitleHelper.formats[:promo] = ":app // :title"
     
-_Note:_ it's recommended to add this kind of stuff to an initializer.
+_Note:_ it's recommended to add this kind of stuff to an initializer, like e.g.
+`config/initializers/page_title_helper.rb`.
 
 ## A (maybe useful) interpolation
 
 The internationalized controller name, with fallback to just display the humanized name:
 
     PageTitleHelper.interpolates :controller do |env|
-      I18n.t env.controller.controller_path.tr('/','.') + '.controller', :default => env.controller.controller_name.humanize
+      c = env[:view].controller
+      I18n.t(c.controller_path.tr('/', '.') + '.controller', :default => c.controller_name.humanize)
     end
     
-_Note:_ Put this kind of stuff into an initilizer, like `config/initializers/page_title.rb` or someting like that.
+_Note:_ Put this kind of stuff into an initializer, like `config/initializers/page_title_helper.rb` or someting like that.
     
 ## Licence and copyright
 Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the MIT license

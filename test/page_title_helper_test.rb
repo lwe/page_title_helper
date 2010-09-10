@@ -32,7 +32,7 @@ class PageTitleHelperTest < ActiveSupport::TestCase
         PageTitleHelper.interpolates(:title_foobar) { "title_foobar" }
     
         assert_equal "title_foobar / foobar_test / foobar / foobar_x", PageTitleHelper::Interpolations.interpolate(":title_foobar / :foobar_test / :foobar / :foobar_x", {})
-      end
+      end      
     end
   
     context "#page_title (define w/ block)" do
@@ -129,6 +129,13 @@ class PageTitleHelperTest < ActiveSupport::TestCase
         @view.controller! 'view/does', 'not_exist'
         assert_equal 'Other default - Page title helper', @view.page_title(:default => :'app.other_tagline')
       end
+    end
+    
+    context "README.md" do
+      should "interpolate :controller" do
+        PageTitleHelper.interpolates(:controller) { |env| env[:view].controller.controller_name.humanize }
+        assert_equal "contacts.list.title - Test", @view.page_title(:format => ":title - :controller")
+      end      
     end
   end
 end
