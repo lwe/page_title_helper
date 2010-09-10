@@ -18,11 +18,20 @@ Rails.class_eval do
   def env; "test" end
 end
 
-# kinda hack ActionView a bit to allow easy (fake) template assignment
-class ActionView::Base
-  def template=(template)
-    @_first_render = !template.respond_to?(:to_str) ? template : ActionView::Template.new(template, nil, nil, { :virtual_path => template })
-    @_virtual_path = template
+# Mock ActionView a bit to allow easy (fake) template assignment
+class TestView < ActionView::Base
+  def initialize(controller_path = nil, action = nil)
+    @controller = ActionView::TestCase::TestController.new
+    @controller.controller_path = controller_path
+    self.params[:action] = action if action
   end
-  alias_method :template_path=, :template=
+  
+  def controller!(controller_path, action)
+    @controller.controller_path = controller_path
+    self.params[:action] = action
+  end
+  
+  def controller
+    @controller
+  end
 end

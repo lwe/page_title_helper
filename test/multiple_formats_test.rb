@@ -4,8 +4,7 @@ require 'page_title_helper'
 class MultipleFormatsTest < ActiveSupport::TestCase  
   context "#page_title supporting multiple formats through arrays" do
     setup do
-      @view = ActionView::Base.new
-      @view.template = "contacts/list.html.erb"
+      @view = TestView.new('contacts', 'list')
     end
     
     should "accept an array passed in the page_title block and use the second argument as format" do
@@ -21,7 +20,7 @@ class MultipleFormatsTest < ActiveSupport::TestCase
   context "#page_title with format aliases" do
     setup do
       PageTitleHelper.formats[:myformat] = ":title <-> :app"      
-      @view = ActionView::Base.new
+      @view = TestView.new('contacts', 'list')
       @view.template = "contacts/list.html.erb"
     end
     
@@ -57,16 +56,16 @@ class MultipleFormatsTest < ActiveSupport::TestCase
       I18n.load_path = [File.join(File.dirname(__FILE__), "en_wohaapp.yml")]
       I18n.reload!
       PageTitleHelper.formats[:promo] = ":app > :title"
-      @view = ActionView::Base.new
+      @view = TestView.new
     end
     
     should "allow to overide format through YAML" do
-      @view.template = 'pages/features.html.haml'
+      @view.controller! 'pages', 'features'
       assert_equal 'Wohaapp > Feature comparison', @view.page_title
     end
     
     should "handle raw string formats from YAML as well" do
-      @view.template = 'pages/signup.html.haml'
+      @view.controller! 'pages', 'signup'
       assert_equal 'Sign up for Wohaapp now!', @view.page_title
     end
   end

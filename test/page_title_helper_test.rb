@@ -8,8 +8,7 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       I18n.load_path = [File.join(File.dirname(__FILE__), 'en.yml')]
       I18n.reload!
     
-      @view = ActionView::Base.new
-      @view.template_path = "contacts/list.html.erb"
+      @view = TestView.new('contacts', 'list')
     end
   
     context "::Interpolations" do
@@ -90,17 +89,17 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       end
         
       should "render translated :'app.tagline' if no title is available" do
-        @view.template_path = 'view/does/not_exist.html.erb'
+        @view.controller! 'view/does', 'not_exist'
         assert_equal "Default - Page title helper", @view.page_title
       end
 
       should "render custom 'default' string, if title is not available" do
-        @view.template_path = 'view/does/not_exist.html.erb'
+        @view.controller! 'view/does', 'not_exist'
         assert_equal 'Some default - Page title helper', @view.page_title(:default => 'Some default')
       end
 
       should "render custom default translation, if title is not available" do
-        @view.template_path = 'view/does/not_exist.html.erb'
+        @view.controller! 'view/does', 'not_exist'
         assert_equal 'Other default - Page title helper', @view.page_title(:default => :'app.other_tagline')
       end
 
@@ -109,7 +108,7 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       end
       
       should "work with other template engines, like HAML" do
-        @view.template_path = 'contacts/myhaml.html.haml'
+        @view.controller! 'contacts', 'myhaml'
         assert_equal 'this is haml! - Page title helper', @view.page_title
       end      
     end
