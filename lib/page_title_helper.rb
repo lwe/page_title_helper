@@ -69,7 +69,7 @@ module PageTitleHelper
     options.assert_valid_keys(:app, :suffix, :default, :format)
         
     # read page title and split into 'real' title and customized format
-    title = @_page_title || I18n.translate(i18n_template_key(options[:suffix]), :default => options[:default])
+    title = @_page_title || page_title_from_translation(options[:default], options[:suffix])
     title, options[:format] = *(title << options[:format]) if title.is_a?(Array)
         
     # handle format aliases
@@ -85,22 +85,22 @@ module PageTitleHelper
   
   protected
   
-    # Find current title key based on currently rendering template.
-    #
-    # Access +ActionView+s internal <tt>@_first_render</tt> variable, to access
-    # template first rendered, this is to help create the DRY-I18n-titles magic,
-    # and also kind of a hack, because this really seems to be some sort if
-    # internal variable, that's why it's "abstracted" away as well.
-    #
-    # Also ensure that the extensions (like <tt>.html.erb</tt> or
-    # <tt>.html.haml</tt>) have been stripped of and translated in the sense
-    # of converting <tt>/</tt> to <tt>.</tt>.
-    def i18n_template_key(suffix = nil)
-      @_virtual_path.gsub(/\.[^\/]*\Z/, '').tr('/', '.') + (suffix.present? ? ".#{suffix}" : "")
+    # Find translation for `controller.action.title` combination, falls back to
+    # `controller.title` or supplied default if no title was found.
+    def page_title_from_translation(default, suffix = :title)
+      base = controller.controller_path.tr('/', '.')
+      action = params[:action]
+      suffix = ".#{suffix || 'title'}"
+      
+      keys = [:"#{base}.#{action}#{suffix}"]
+      keys << :"#{base}.new#{suffix}" if action == 'create'
+      keys << :"#{base}.edit#{suffix}" if action == 'update'
+      keys << :"#{base}#{suffix}"
+      keys << default
+      
+      I18n.translate(keys.shift, :default => keys)
     end
 end
 
 # include helper methods in ActionView
-if ActiveSupport.respond_to?(:on_load)
-  ActiveSupport.on_load(:action_view) { include PageTitleHelper }
-end
+ActiveSupport.on_load(:action_view) { include PageTitleHelper }
