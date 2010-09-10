@@ -61,9 +61,15 @@ class PageTitleHelperTest < ActiveSupport::TestCase
     end
     
     context "#page_title (rendering)" do
-      should "read default title from I18n, based on template" do
+      should "read default title from I18n, based on controller/action" do
         assert_equal 'contacts.list.title - Page title helper', @view.page_title
       end
+      
+      should "if passed in a hash, use it to expand translations" do
+        @view.controller! 'contacts', 'show'
+        assert_equal 'Contact: Bella', @view.page_title!( :name => "Bella" )
+        assert_equal 'Contact: Bella - Page title helper', @view.page_title
+      end        
       
       should "only print app name if :format => :app" do
         assert_equal 'Page title helper', @view.page_title(:format => :app)
@@ -87,30 +93,41 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       should "return title if :format => false and when using the DRY-I18n titles" do
         assert_equal "contacts.list.title", @view.page_title(:format => false)
       end
-        
+              
       should "render translated :'app.tagline' if no title is available" do
         @view.controller! 'view/does', 'not_exist'
         assert_equal "Default - Page title helper", @view.page_title
       end
 
-      should "render custom 'default' string, if title is not available" do
+      should "render use controller.title as first fallback, if no title exists" do
+        @view.controller! 'admin/account', 'index'
+        assert_equal 'Account administration - Page title helper', @view.page_title(:default => 'Other default')
+      end
+      
+      should "not fallback to controller.title if controller.action.title exists" do
+        @view.controller! 'admin/account', 'show'
+        assert_equal 'Account - Page title helper', @view.page_title(:default => 'Other default')
+      end      
+
+      should 'fallback to controller.new.title if create has no title' do
+        @view.controller! 'admin/account', 'create'
+        assert_equal 'New account - Page title helper', @view.page_title(:default => 'Other default')        
+      end
+      
+      should 'fallback to controller.edit.title if update has no title' do
+        @view.controller! 'admin/account', 'update'
+        assert_equal 'Edit account - Page title helper', @view.page_title(:default => 'Other default')        
+      end      
+
+      should "render custom 'default' string, if title is not available nor controller.title" do
         @view.controller! 'view/does', 'not_exist'
         assert_equal 'Some default - Page title helper', @view.page_title(:default => 'Some default')
       end
 
-      should "render custom default translation, if title is not available" do
+      should "render custom default translation, if title is not available nor controller.title" do
         @view.controller! 'view/does', 'not_exist'
         assert_equal 'Other default - Page title helper', @view.page_title(:default => :'app.other_tagline')
       end
-
-      should "render auto-title using custom suffix 'page_title'" do
-        assert_equal 'custom contacts title - Page title helper', @view.page_title(:suffix => :page_title)
-      end
-      
-      should "work with other template engines, like HAML" do
-        @view.controller! 'contacts', 'myhaml'
-        assert_equal 'this is haml! - Page title helper', @view.page_title
-      end      
     end
   end
 end

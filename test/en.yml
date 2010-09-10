@@ -5,6 +5,16 @@ en:
       page_title: custom contacts title
     myhaml:
       title: this is haml!
+  admin:
+    account:
+      title: Account administration
+      show:
+        title: Account
+      new:
+        title: New account
+      edit:
+        title: Edit account
+        
   placeholder: "Displaying %{name}"
   app:
     tagline: Default
