@@ -7,12 +7,12 @@ class PageTitleHelperTest < ActiveSupport::TestCase
     setup do
       I18n.load_path = [File.join(File.dirname(__FILE__), 'en.yml')]
       I18n.reload!
-    
+
       @view = TestView.new('contacts', 'list')
     end
-  
+
     context "::Interpolations" do
-      should "interpolate :app and :title" do    
+      should "interpolate :app and :title" do
         assert_equal 'Page title helper', PageTitleHelper::Interpolations.app({})
         assert_equal 'Appname', PageTitleHelper::Interpolations.app({ :app => 'Appname' })
         assert_equal 'untitled', PageTitleHelper::Interpolations.title({:title => 'untitled'})
@@ -21,20 +21,20 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       should "allow adding custom interpolations" do
         # extend Interpolations
         PageTitleHelper.interpolates(:app_reverse) { |env| app(env).reverse.downcase }
-  
+
         assert_equal "anna", PageTitleHelper::Interpolations.app_reverse({ :app => 'Anna' })
         assert_equal "ppa", PageTitleHelper::Interpolations.interpolate(':app_reverse', { :app => 'app' })
       end
 
       should "interpolate in correct order, i.e. longest first" do
-        PageTitleHelper.interpolates(:foobar) { "foobar" }
-        PageTitleHelper.interpolates(:foobar_test) { "foobar_test" }
-        PageTitleHelper.interpolates(:title_foobar) { "title_foobar" }
-    
+        PageTitleHelper.interpolates(:foobar) { |env| "foobar" }
+        PageTitleHelper.interpolates(:foobar_test) { |env| "foobar_test" }
+        PageTitleHelper.interpolates(:title_foobar) { |env| "title_foobar" }
+
         assert_equal "title_foobar / foobar_test / foobar / foobar_x", PageTitleHelper::Interpolations.interpolate(":title_foobar / :foobar_test / :foobar / :foobar_x", {})
-      end      
+      end
     end
-  
+
     context "#page_title (define w/ block)" do
       should "return title from block and render with app name" do
         assert_equal 'foo', @view.page_title { "foo" }
@@ -44,9 +44,9 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       should "set custom title using a translation with a placeholder" do
         assert_equal "Displaying Bella", @view.page_title { I18n.t(:placeholder, :name => 'Bella') }
         assert_equal "Displaying Bella - Page title helper", @view.page_title
-      end      
+      end
     end
-    
+
     context "#page_title! (define)" do
       should "set page title" do
         assert_equal 'test', @view.page_title!('test')
@@ -57,21 +57,14 @@ class PageTitleHelperTest < ActiveSupport::TestCase
         PageTitleHelper.formats[:bang] = ":title !! :app"
         assert_equal 'test', @view.page_title!('test', :bang)
         assert_equal 'test !! Page title helper', @view.page_title
-      end      
+      end
     end
-    
+
     context "#page_title (rendering)" do
       should "read default title from I18n, based on controller/action" do
         assert_equal 'contacts.list.title - Page title helper', @view.page_title
       end
-      
-      # currently not feasible :(
-      # should "if passed in a hash, use it to expand translations" do
-      #  @view.controller! 'contacts', 'show'
-      #  assert_equal 'Contact: Bella', @view.page_title!( :name => "Bella" )
-      #  assert_equal 'Contact: Bella - Page title helper', @view.page_title
-      #end        
-      
+
       should "only print app name if :format => :app" do
         assert_equal 'Page title helper', @view.page_title(:format => :app)
       end
@@ -90,11 +83,11 @@ class PageTitleHelperTest < ActiveSupport::TestCase
         assert_equal 'untitled', @view.page_title { "untitled" }
         assert_equal "untitled", @view.page_title(:format => false)
       end
-      
+
       should "return title if :format => false and when using the DRY-I18n titles" do
         assert_equal "contacts.list.title", @view.page_title(:format => false)
       end
-              
+
       should "render translated :'app.tagline' if no title is available" do
         @view.controller! 'view/does', 'not_exist'
         assert_equal "Default - Page title helper", @view.page_title
@@ -104,21 +97,21 @@ class PageTitleHelperTest < ActiveSupport::TestCase
         @view.controller! 'admin/account', 'index'
         assert_equal 'Account administration - Page title helper', @view.page_title(:default => 'Other default')
       end
-      
+
       should "not fallback to controller.title if controller.action.title exists" do
         @view.controller! 'admin/account', 'show'
         assert_equal 'Account - Page title helper', @view.page_title(:default => 'Other default')
-      end      
+      end
 
       should 'fallback to controller.new.title if create has no title' do
         @view.controller! 'admin/account', 'create'
-        assert_equal 'New account - Page title helper', @view.page_title(:default => 'Other default')        
+        assert_equal 'New account - Page title helper', @view.page_title(:default => 'Other default')
       end
-      
+
       should 'fallback to controller.edit.title if update has no title' do
         @view.controller! 'admin/account', 'update'
-        assert_equal 'Edit account - Page title helper', @view.page_title(:default => 'Other default')        
-      end      
+        assert_equal 'Edit account - Page title helper', @view.page_title(:default => 'Other default')
+      end
 
       should "render custom 'default' string, if title is not available nor controller.title" do
         @view.controller! 'view/does', 'not_exist'
@@ -130,12 +123,12 @@ class PageTitleHelperTest < ActiveSupport::TestCase
         assert_equal 'Other default - Page title helper', @view.page_title(:default => :'app.other_tagline')
       end
     end
-    
+
     context "README.md" do
       should "interpolate :controller" do
         PageTitleHelper.interpolates(:controller) { |env| env[:view].controller.controller_name.humanize }
         assert_equal "contacts.list.title - Test", @view.page_title(:format => ":title - :controller")
-      end      
+      end
     end
   end
 end

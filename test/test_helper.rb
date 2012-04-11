@@ -22,12 +22,12 @@ class TestView < ActionView::Base
     @controller.controller_path = controller_path
     self.params[:action] = action if action
   end
-  
+
   def controller!(controller_path, action)
     @controller.controller_path = controller_path
     self.params[:action] = action
   end
-  
+
   def controller
     @controller
   end
