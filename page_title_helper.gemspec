@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary     = "Simple, internationalized and DRY page titles and headings for Rails."
   s.description = "Simple, internationalized and DRY page titles and headings for rails."
 
-  s.required_ruby_version     = ">= 1.8.7"
+  s.required_ruby_version     = ">= 1.9.3"
   s.required_rubygems_version = ">= 1.3.6"
 
   s.authors  = ["Lukas Westermann"]
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.license          = 'MIT'
 
-  s.add_dependency 'rails', '>= 3.0.0'
-  s.add_development_dependency 'rake', '>= 0.9.2'
+  s.add_dependency 'rails', '>= 3.2.0'
+  s.add_development_dependency 'rake', '>= 10.3.2'
   s.add_development_dependency 'shoulda', '>= 0'
 end
