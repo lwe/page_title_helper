@@ -20,7 +20,7 @@ That's it. Now just add translations, in e.g. `config/locales/en.yml`:
           index:
             title: "Contacts"
             
-When `/contacs/` is requested, the key `:en, :contacts, :index, :title`
+When `/contacts/` is requested, the key `:en, :contacts, :index, :title`
 is looked up and printed, together with the applications basename, like: `Contacts - My cool App`.
 The format etc. is of course configurable, just head down to the options.
 
@@ -79,7 +79,7 @@ translate custom titles, like:
 ## More fun with <tt>:format</tt>
 
 The `:format` option is used to specify how a title is formatted, i.e. if the app name is
-prependor appended, or if it contains the account name etc. It uses a similar approach as
+prepended or appended or if it contains the account name etc. It uses a similar approach as
 paperclip's path interpolations:
 
     page_title :format => ':title / :app' # => "Contacts / My cool app"
@@ -123,7 +123,7 @@ To streamline that feature a bit and simplify reuse of often used formats, it's 
             - "Features comparison"
             - !ruby/sym promo
 
-Pretty, cool, aint it? The special `:format => :app` works also via the `formats` hash. Then there is also a
+Pretty, cool, ain't it? The special `:format => :app` works also via the `formats` hash. Then there is also a
 `:default` format, which can be used to override the default format.
 
 ## All options - explained
