@@ -176,7 +176,7 @@ The internationalized controller name, with fallback to just display the humaniz
       I18n.t(c.controller_path.tr('/', '.') + '.controller', default: c.controller_name.humanize)
     end
 
-_Note:_ Put this kind of stuff into an initializer, like `config/initializers/page_title_helper.rb` or someting like that.
+_Note:_ Put this kind of stuff into an initializer, like `config/initializers/page_title_helper.rb` or something like that.
 
 ## Licence and copyright
 Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the MIT license
