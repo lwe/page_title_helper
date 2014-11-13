@@ -24,12 +24,12 @@ class MultipleFormatsTest < ActiveSupport::TestCase
     end
 
     should "have a default alias named :app" do
-      assert_equal "Page title helper", @view.page_title(:format => :app)
+      assert_equal "Page title helper", @view.page_title(format: :app)
     end
 
     should "allow custom aliases to be defined and used" do
       @view.page_title { "Test" }
-      assert_equal "Test <-> Page title helper", @view.page_title(:format => :myformat)
+      assert_equal "Test <-> Page title helper", @view.page_title(format: :myformat)
     end
 
     should "fallback to default format, if array is not big enough (i.e. only contains single element...)" do
@@ -45,7 +45,7 @@ class MultipleFormatsTest < ActiveSupport::TestCase
 
       should "override locally supplied :format arguments" do
         assert_equal "Something", @view.page_title { ["Something", "* * * :title * * *"] }
-        assert_equal "* * * Something * * *", @view.page_title(:format => "-= :title =-") # yeah, using x-tra ugly titles :)
+        assert_equal "* * * Something * * *", @view.page_title(format: "-= :title =-") # yeah, using x-tra ugly titles :)
       end
     end
   end
