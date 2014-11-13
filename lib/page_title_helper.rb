@@ -50,9 +50,9 @@ module PageTitleHelper
   # Defined alias formats, pretty useful.
   def self.formats
     @formats ||= {
-      app: ":app",
+      app: ':app',
       default: ':title - :app',
-      title: ":title"
+      title: ':title'
     }
   end
 
