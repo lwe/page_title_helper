@@ -12,7 +12,7 @@ end
 Rails = Object.new
 Rails.class_eval do
   def root; @pathname ||= Pathname.new('/this/is/just/for/testing/page_title_helper') end
-  def env; "test" end
+  def env; 'test' end
 end
 
 # Mock ActionView a bit to allow easy (fake) template assignment
