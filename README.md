@@ -1,6 +1,7 @@
 # Page title helper
 
 [![Build Status](https://travis-ci.org/lwe/page_title_helper.svg?branch=master)](https://travis-ci.org/lwe/page_title_helper)
+[![Gem Version](https://badge.fury.io/rb/page_title_helper.svg)](http://badge.fury.io/rb/page_title_helper)
 
 Ever wondered if there was an easier and DRY-way to set your page titles (and/or headings),
 introducing _page title helper_, a small Rails 3 view helper to inflect titles from controllers
