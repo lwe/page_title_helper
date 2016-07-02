@@ -11,9 +11,6 @@ rvm:
   - 2.3.0
 
 gemfile:
-  - gemfiles/rails_3.2.gemfile
-  - gemfiles/rails_4.0.gemfile
-  - gemfiles/rails_4.1.gemfile
   - gemfiles/rails_4.2.gemfile
 
 script:
@@ -22,8 +19,4 @@ script:
 matrix:
   fast_finish: true
   allow_failures:
-    - gemfile: gemfiles/rails_3.2.gemfile
-      rvm: 2.2
-    - gemfile: gemfiles/rails_3.2.gemfile
-      rvm: 2.3.0
     - gemfile: gemfiles/rails_4.2.gemfile
