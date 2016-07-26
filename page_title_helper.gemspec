@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'appraisal'
   s.add_development_dependency 'rake', '>= 10.3.2'
   s.add_development_dependency 'shoulda'
+  s.add_development_dependency 'rubocop', '~> 0.47.1'
 end
