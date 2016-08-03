@@ -69,7 +69,7 @@ Style/ExtraSpacing:
 # AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
 Style/FileName:
   Exclude:
-    - 'Appraisals'
+    - 'gemfiles/Gemfile.*'
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -77,8 +77,7 @@ Style/FileName:
 # SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
 Style/HashSyntax:
   Exclude:
-    - 'gemfiles/rails_4.2.gemfile'
-    - 'gemfiles/rails_5.0.gemfile'
+    - 'gemfiles/Gemfile.*'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -123,3 +122,10 @@ Style/StringLiterals:
 Style/TrivialAccessors:
   Exclude:
     - 'test/test_helper.rb'
+
+# Offense count: 10 (all files)
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: when_needed, always, never
+Style/FrozenStringLiteralComment:
+  Enabled: false

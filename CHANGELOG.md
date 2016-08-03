@@ -27,6 +27,8 @@ about why a change log is important.
 
 
 ### Changed
+- Replaced Appraisals with specific Gemfiles
+  ([#41](https://github.com/lwe/page_title_helper/pull/41))
 - Delete obsolete init.rb file
   ([#61](https://github.com/lwe/page_title_helper/pull/61)
 - Add Rails 5.0 to the build matrix
