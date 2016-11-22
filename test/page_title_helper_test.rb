@@ -1,6 +1,5 @@
+require 'minitest/autorun'
 require 'test_helper'
-require 'page_title_helper'
-require 'ostruct'
 
 class PageTitleHelperTest < ActiveSupport::TestCase
   context 'PageTitleHelper' do
