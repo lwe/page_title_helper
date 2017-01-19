@@ -1,5 +1,5 @@
+require 'minitest/autorun'
 require 'test_helper'
-require 'page_title_helper'
 
 class MultipleFormatsTest < ActiveSupport::TestCase
   context '#page_title supporting multiple formats through arrays' do
