@@ -7,7 +7,6 @@
 #
 # See documentation for +page_title+ for usage examples and more informations.
 require 'active_support'
-require 'page_title_helper/version'
 
 # PageTitleHelper
 module PageTitleHelper
