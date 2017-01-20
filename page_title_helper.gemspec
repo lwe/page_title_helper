@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
   s.email    = ['lukas.westermann@gmail.com']
   s.homepage = 'http://github.com/lwe/page_title_helper'
 
-  s.files            = `git ls-files`.split("\n")
-  s.test_files       = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.files            = %w{Gemfile LICENSE README.md Rakefile page_title_helper.gemspec} + Dir['**/*.{rb,yml}']
+  s.test_files       = s.files.grep(%r{^(test|spec)/})
   s.require_path     = 'lib'
 
   s.license          = 'MIT'
