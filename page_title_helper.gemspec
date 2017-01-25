@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.email    = ['lukas.westermann@gmail.com']
   s.homepage = 'http://github.com/lwe/page_title_helper'
 
-  s.files            = %w{Gemfile LICENSE README.md CODE_OF_CONDUCT.md Rakefile page_title_helper.gemspec} + Dir['**/*.{rb,yml}']
+  s.files            = %w{Gemfile LICENSE README.md CODE_OF_CONDUCT.md CHANGELOG.md Rakefile page_title_helper.gemspec} + Dir['**/*.{rb,yml}']
   s.test_files       = s.files.grep(%r{^(test|spec)/})
   s.require_path     = 'lib'
 
