@@ -1,6 +1,6 @@
 require 'active_support'
 require 'action_view'
-require File.join(File.dirname(__FILE__), '..', 'init')
+require 'page_title_helper'
 
 unless defined?(IRB)
   require 'active_support/test_case'

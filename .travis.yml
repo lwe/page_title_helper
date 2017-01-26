@@ -16,7 +16,7 @@ gemfile:
 
 script:
   - bundle exec rake --trace test
-  - bundle exec rubocop gemfiles/*.gemfile lib/ test/ Appraisals Gemfile init.rb Rakefile
+  - bundle exec rubocop gemfiles/*.gemfile lib/ test/ Appraisals Gemfile Rakefile
 
 matrix:
   fast_finish: true
