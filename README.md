@@ -184,5 +184,13 @@ The internationalized controller name, with fallback to just display the humaniz
 
 _Note:_ Put this kind of stuff into an initializer, like `config/initializers/page_title_helper.rb` or something like that.
 
+
+## Contributing
+
+Pull request are more than welcome. Please adhere to our
+[CODE_OF_CONDUCT.md](code of conduct) in discussions and contributions.
+Thanks!
+
+
 ## Licence and copyright
 Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the MIT license
