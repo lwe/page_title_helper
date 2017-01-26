@@ -23,7 +23,7 @@ Lint/UnusedMethodArgument:
 
 # Offense count: 1
 Metrics/AbcSize:
-  Max: 22
+  Max: 23
 
 # Offense count: 2
 # Configuration parameters: CountComments, ExcludedMethods.

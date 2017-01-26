@@ -69,7 +69,7 @@ module PageTitleHelper
     options.assert_valid_keys(:app, :default, :format)
 
     # read page title and split into 'real' title and customized format
-    title = @_page_title || page_title_from_translation(options[:default])
+    title = @_page_title ||= page_title_from_translation(options[:default])
     title, options[:format] = *(title << options[:format]) if title.is_a?(Array)
 
     # handle format aliases
