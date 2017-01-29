@@ -11,8 +11,9 @@ rvm:
   - 2.3.3
 
 gemfile:
-  - gemfiles/rails_4.2.gemfile
-  - gemfiles/rails_5.0.gemfile
+  - Gemfile
+  - gemfiles/Gemfile.rails-4-2
+  - gemfiles/Gemfile.rails-5-0
 
 install:
   # This is to avoid a frozen string issue in RubyGems with Ruby 2.3.3.
@@ -23,12 +24,16 @@ install:
 
 script:
   - bundle exec rake --trace test
-  - bundle exec rubocop gemfiles/*.gemfile lib/ test/ Appraisals Gemfile Rakefile
+  - bundle exec rubocop Gemfile gemfiles/Gemfile.rails-4-2 gemfiles/Gemfile.rails-5-0 lib/ test/ Rakefile
 
 matrix:
   fast_finish: true
-  allow_failures:
-    - gemfile: gemfiles/rails_5.0.gemfile
+  exclude:
+    - gemfile: Gemfile
       rvm: 2.0.0
-    - gemfile: gemfiles/rails_5.0.gemfile
+    - gemfile: Gemfile
+      rvm: 2.1
+    - gemfile: gemfiles/Gemfile.rails-5-0
+      rvm: 2.0.0
+    - gemfile: gemfiles/Gemfile.rails-5-0
       rvm: 2.1
