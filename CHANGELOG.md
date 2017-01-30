@@ -10,6 +10,8 @@ about why a change log is important.
 ## 3.0.0 [unreleased]
 
 ### Added
+- Add Ruby 2.4.0 to the build matrix
+  ([#68](https://github.com/lwe/page_title_helper/pull/68)
 - Add a CHANGELOG.md
   ([#59](https://github.com/lwe/page_title_helper/pull/59)
 - Add RuboCop checking to the CI
