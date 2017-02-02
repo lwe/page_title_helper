@@ -26,9 +26,9 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       end
 
       should 'interpolate in correct order, i.e. longest first' do
-        PageTitleHelper.interpolates(:foobar) { |env| 'foobar' }
-        PageTitleHelper.interpolates(:foobar_test) { |env| 'foobar_test' }
-        PageTitleHelper.interpolates(:title_foobar) { |env| 'title_foobar' }
+        PageTitleHelper.interpolates(:foobar) { |_env| 'foobar' }
+        PageTitleHelper.interpolates(:foobar_test) { |_env| 'foobar_test' }
+        PageTitleHelper.interpolates(:title_foobar) { |_env| 'title_foobar' }
 
         assert_equal 'title_foobar / foobar_test / foobar / foobar_x', PageTitleHelper::Interpolations.interpolate(':title_foobar / :foobar_test / :foobar / :foobar_x', {})
       end

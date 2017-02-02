@@ -17,7 +17,7 @@ module PageTitleHelper
 
     def self.interpolate(pattern, *args)
       instance_methods(false).sort.reverse.inject(pattern.to_s.dup) do |result, tag|
-        result.gsub(/:#{tag}/) do |match|
+        result.gsub(/:#{tag}/) do |_match|
           send(tag, *args)
         end
       end
@@ -61,7 +61,7 @@ module PageTitleHelper
     @_page_title.is_a?(Array) ? @_page_title.first : @_page_title
   end
 
-  def page_title(options = nil, &block)
+  def page_title(options = nil)
     return page_title!(yield) if block_given? # define title
 
     options = PageTitleHelper.options.merge(options || {}).symbolize_keys!
