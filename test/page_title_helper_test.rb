@@ -14,7 +14,7 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       should 'interpolate :app and :title' do
         assert_equal 'Page title helper', PageTitleHelper::Interpolations.app({})
         assert_equal 'Appname', PageTitleHelper::Interpolations.app(app: 'Appname')
-        assert_equal 'untitled', PageTitleHelper::Interpolations.title(title:  'untitled')
+        assert_equal 'untitled', PageTitleHelper::Interpolations.title(title: 'untitled')
       end
 
       should 'allow adding custom interpolations' do
