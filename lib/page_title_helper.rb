@@ -10,7 +10,6 @@ require 'active_support'
 
 # PageTitleHelper
 module PageTitleHelper
-
   # http://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/interpolations.rb
   module Interpolations
     extend self
