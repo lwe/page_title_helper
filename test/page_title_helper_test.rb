@@ -21,7 +21,7 @@ class PageTitleHelperTest < ActiveSupport::TestCase
         # extend Interpolations
         PageTitleHelper.interpolates(:app_reverse) { |env| app(env).reverse.downcase }
 
-        assert_equal 'anna', PageTitleHelper::Interpolations.app_reverse({ app: 'Anna' })
+        assert_equal 'anna', PageTitleHelper::Interpolations.app_reverse(app: 'Anna')
         assert_equal 'ppa', PageTitleHelper::Interpolations.interpolate(':app_reverse', app: 'app')
       end
 
