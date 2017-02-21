@@ -1,5 +1,8 @@
 AllCops:
   TargetRubyVersion: 2.0
+Style/FileName:
+  Exclude:
+    - 'gemfiles/Gemfile.*'
 Style/IndentationConsistency:
   EnforcedStyle: rails
 inherit_from: .rubocop_todo.yml
