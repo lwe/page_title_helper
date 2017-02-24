@@ -32,9 +32,3 @@ Metrics/LineLength:
 Style/ModuleFunction:
   Exclude:
     - 'lib/page_title_helper.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/MutableConstant:
-  Exclude:
-    - 'lib/page_title_helper/version.rb'
