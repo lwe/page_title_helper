@@ -26,18 +26,16 @@ end
 
 # Mock ActionView a bit to allow easy (fake) template assignment
 class TestView < ActionView::Base
+  attr_reader :controller
+
   def initialize(controller_path = nil, action = nil)
     @controller = ActionView::TestCase::TestController.new
     @controller.controller_path = controller_path
-    self.params[:action] = action if action
+    params[:action] = action if action
   end
 
   def controller!(controller_path, action)
     @controller.controller_path = controller_path
-    self.params[:action] = action
-  end
-
-  def controller
-    @controller
+    params[:action] = action
   end
 end
