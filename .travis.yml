@@ -15,6 +15,7 @@ gemfile:
   - Gemfile
   - gemfiles/Gemfile.rails-4-2
   - gemfiles/Gemfile.rails-5-0
+  - gemfiles/Gemfile.rails-5-1
 
 install:
   # This is to avoid a frozen string issue in RubyGems with Ruby 2.3.3.
@@ -37,4 +38,8 @@ matrix:
     - gemfile: gemfiles/Gemfile.rails-5-0
       rvm: 2.0.0
     - gemfile: gemfiles/Gemfile.rails-5-0
+      rvm: 2.1
+    - gemfile: gemfiles/Gemfile.rails-5-1
+      rvm: 2.0.0
+    - gemfile: gemfiles/Gemfile.rails-5-1
       rvm: 2.1
