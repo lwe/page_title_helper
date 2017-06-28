@@ -192,5 +192,11 @@ Pull request are more than welcome. Please adhere to our
 Thanks!
 
 
+## Maintainers
+
+* [@lwe - Lukas Westermann](https://github.com/lwe)
+* [@oliverklee - Oliver Klee](https://github.com/oliverklee)
+
+
 ## Licence and copyright
 Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the MIT license
