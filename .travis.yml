@@ -18,10 +18,6 @@ gemfile:
   - gemfiles/Gemfile.rails-5-1
 
 install:
-  # This is to avoid a frozen string issue in RubyGems with Ruby 2.3.3.
-  # @see https://github.com/rubygems/rubygems/pull/1819
-  - gem update --system --no-doc
-  - gem install bundler
   - bundle install
 
 script:
