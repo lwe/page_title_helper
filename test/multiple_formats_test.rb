@@ -13,7 +13,7 @@ class MultipleFormatsTest < ActiveSupport::TestCase
     end
 
     should 'still return title as string and not the array' do
-      assert_equal 'Oh my...!', @view.page_title { ['Oh my...!', ':title // :app'] }
+      assert_equal('Oh my...!', @view.page_title { ['Oh my...!', ':title // :app'] })
     end
   end
 
@@ -33,18 +33,18 @@ class MultipleFormatsTest < ActiveSupport::TestCase
     end
 
     should 'fallback to default format, if array is not big enough (i.e. only contains single element...)' do
-      assert_equal 'Test', @view.page_title { ['Test'] }
+      assert_equal('Test', @view.page_title { ['Test'] })
       assert_equal 'Test - Page title helper', @view.page_title
     end
 
     context 'used with the array block' do
       should 'also allow aliases returned in that array thingy' do
-        assert_equal 'Test', @view.page_title { ['Test', :myformat] }
+        assert_equal('Test', @view.page_title { ['Test', :myformat] })
         assert_equal 'Test <-> Page title helper', @view.page_title
       end
 
       should 'override locally supplied :format arguments' do
-        assert_equal 'Something', @view.page_title { ['Something', '* * * :title * * *'] }
+        assert_equal('Something', @view.page_title { ['Something', '* * * :title * * *'] })
         assert_equal '* * * Something * * *', @view.page_title(format: '-= :title =-') # yeah, using x-tra ugly titles :)
       end
     end

@@ -36,12 +36,12 @@ class PageTitleHelperTest < ActiveSupport::TestCase
 
     context '#page_title (define w/ block)' do
       should 'return title from block and render with app name' do
-        assert_equal 'foo', @view.page_title { 'foo' }
+        assert_equal('foo', @view.page_title { 'foo' })
         assert_equal 'foo - Page title helper', @view.page_title
       end
 
       should 'set custom title using a translation with a placeholder' do
-        assert_equal 'Displaying Bella', @view.page_title { I18n.t(:placeholder, name: 'Bella') }
+        assert_equal('Displaying Bella', @view.page_title { I18n.t(:placeholder, name: 'Bella') })
         assert_equal 'Displaying Bella - Page title helper', @view.page_title
       end
     end
@@ -73,13 +73,13 @@ class PageTitleHelperTest < ActiveSupport::TestCase
       end
 
       should 'use custom format, if :format option is defined' do
-        assert_equal 'test', @view.page_title { 'test' }
+        assert_equal('test', @view.page_title { 'test' })
         assert_equal 'Some app :: test', @view.page_title(app: 'Some app', format: ':app :: :title')
         assert_equal 'Some app / test', @view.page_title(format: 'Some app / :title')
       end
 
       should 'return just title if format: false is passed' do
-        assert_equal 'untitled', @view.page_title { 'untitled' }
+        assert_equal('untitled', @view.page_title { 'untitled' })
         assert_equal 'untitled', @view.page_title(format: false)
       end
 
