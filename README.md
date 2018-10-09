@@ -1,9 +1,9 @@
 # Page title helper
 
 [![Build Status](https://travis-ci.org/lwe/page_title_helper.svg?branch=master)](https://travis-ci.org/lwe/page_title_helper)
-[![Gem Version](https://badge.fury.io/rb/page_title_helper.svg)](http://badge.fury.io/rb/page_title_helper)
+[![Gem Version](https://badge.fury.io/rb/page_title_helper.svg)](https://badge.fury.io/rb/page_title_helper)
 
-This project adheres to [Semantic Versioning](http://semver.org/).
+This project adheres to [Semantic Versioning](https://semver.org/).
 
 
 ## What does this gem do?

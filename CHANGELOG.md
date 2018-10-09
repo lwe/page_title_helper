@@ -1,9 +1,9 @@
 # Page title helper change log
 
 All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
+This project adheres to [Semantic Versioning](https://semver.org/).
 
-Read more at [Keep a CHANGELOG](http://keepachangelog.com/en/0.3.0/)
+Read more at [Keep a CHANGELOG](https://keepachangelog.com/en/0.3.0/)
 about why a change log is important.
 
 

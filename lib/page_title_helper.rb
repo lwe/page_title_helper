@@ -3,14 +3,14 @@
 #
 # Author:: Lukas Westermann
 # Copyright:: Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland)
-# Licence:: MIT-Licence (http://www.opensource.org/licenses/mit-license.php)
+# Licence:: MIT-Licence (https://www.opensource.org/licenses/mit-license.php)
 #
 # See documentation for +page_title+ for usage examples and more informations.
 require 'active_support'
 
 # PageTitleHelper
 module PageTitleHelper
-  # http://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/interpolations.rb
+  # https://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/interpolations.rb
   module Interpolations
     extend self
 
