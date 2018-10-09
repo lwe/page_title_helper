@@ -18,13 +18,17 @@ gemfile:
   - gemfiles/Gemfile.rails-4-2
   - gemfiles/Gemfile.rails-5-0
   - gemfiles/Gemfile.rails-5-1
+  - gemfiles/Gemfile.rails-5-2
 
 install:
   - bundle install
 
 script:
   - bundle exec rake --trace test
-  - bundle exec rubocop --rails Gemfile gemfiles/Gemfile.rails-4-2 gemfiles/Gemfile.rails-5-0 lib/ test/ Rakefile
+  - bundle exec rubocop --rails Gemfile
+    gemfiles/Gemfile.rails-4-2 gemfiles/Gemfile.rails-5-0 \
+    gemfiles/Gemfile.rails-5-1 gemfiles/Gemfile.rails-5-2 \
+    lib/ test/ Rakefile
 
 matrix:
   fast_finish: true
@@ -40,4 +44,8 @@ matrix:
     - gemfile: gemfiles/Gemfile.rails-5-1
       rvm: 2.0.0
     - gemfile: gemfiles/Gemfile.rails-5-1
+      rvm: 2.1
+    - gemfile: gemfiles/Gemfile.rails-5-2
+      rvm: 2.0.0
+    - gemfile: gemfiles/Gemfile.rails-5-2
       rvm: 2.1
