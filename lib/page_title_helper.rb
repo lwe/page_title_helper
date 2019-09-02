@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # PageTitleHelper provides an +ActionView+ helper method to simplify adding
 # custom titles to pages.
 #
