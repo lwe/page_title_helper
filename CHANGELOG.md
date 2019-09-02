@@ -10,6 +10,8 @@ about why a change log is important.
 ## 3.0.0 [unreleased]
 
 ### Added
+- Add support for Rails 6.0
+  ([#94](https://github.com/lwe/page_title_helper/pull/94))
 - Officially support Rails 5.2
   ([#87](https://github.com/lwe/page_title_helper/pull/87))
 - Add Ruby 2.4.0 to the build matrix
