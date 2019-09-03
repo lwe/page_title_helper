@@ -47,6 +47,8 @@ about why a change log is important.
 
 
 ### Removed
+- Drop support for Ruby < 2.4
+  ([#93](https://github.com/lwe/page_title_helper/pull/93))
 - Drop support for Rails 3.2 and 4.0
   ([#39](https://github.com/lwe/page_title_helper/pull/39))
 - Drop support for Ruby 1.9.x
