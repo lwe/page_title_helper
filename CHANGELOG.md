@@ -7,13 +7,33 @@ Read more at [Keep a CHANGELOG](https://keepachangelog.com/en/0.3.0/)
 about why a change log is important.
 
 
-## 3.0.0 [unreleased]
+## x.y.z
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## 4.0.0
 
 ### Added
 - Add support for Rails 6.0
   ([#94](https://github.com/lwe/page_title_helper/pull/94))
-- Officially support Rails 5.2
-  ([#87](https://github.com/lwe/page_title_helper/pull/87))
+
+### Removed
+- Drop support for Ruby < 2.4
+  ([#93](https://github.com/lwe/page_title_helper/pull/93))
+
+## 3.0.0
+
+### Added
 - Add Ruby 2.4.0 to the build matrix
   ([#68](https://github.com/lwe/page_title_helper/pull/68))
 - Add a CHANGELOG.md
@@ -31,7 +51,6 @@ about why a change log is important.
 - Use Appraisal for building with different Rails versions
   ([#19](https://github.com/lwe/page_title_helper/pull/19))
 
-
 ### Changed
 - Replaced Appraisals with specific Gemfiles
   ([#41](https://github.com/lwe/page_title_helper/pull/41))
@@ -42,18 +61,11 @@ about why a change log is important.
 - Raise RVM and Gem minimum versions
   ([#3](https://github.com/lwe/page_title_helper/pull/3))
 
-
-### Deprecated
-
-
 ### Removed
-- Drop support for Ruby < 2.4
-  ([#93](https://github.com/lwe/page_title_helper/pull/93))
 - Drop support for Rails 3.2 and 4.0
   ([#39](https://github.com/lwe/page_title_helper/pull/39))
 - Drop support for Ruby 1.9.x
   ([#24](https://github.com/lwe/page_title_helper/pull/24))
-
 
 ### Fixed
 - Fix @_page_title uninitialized warning
@@ -74,6 +86,3 @@ about why a change log is important.
   ([#10](https://github.com/lwe/page_title_helper/pull/10))
 - Remove Gemfile.lock
   ([#1](https://github.com/lwe/page_title_helper/pull/1))
-
-
-### Security
