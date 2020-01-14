@@ -6,7 +6,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 Read more at [Keep a CHANGELOG](https://keepachangelog.com/en/0.3.0/)
 about why a change log is important.
 
-
 ## x.y.z
 
 ### Added
