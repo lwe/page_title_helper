@@ -10,6 +10,8 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
+- Officially support Ruby 2.7
+  ([#103](https://github.com/lwe/page_title_helper/pull/103))
 
 ### Changed
 
