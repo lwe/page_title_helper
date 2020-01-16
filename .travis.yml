@@ -13,9 +13,6 @@ rvm:
 
 gemfile:
   - Gemfile
-  - gemfiles/Gemfile.rails-4-2
-  - gemfiles/Gemfile.rails-5-0
-  - gemfiles/Gemfile.rails-5-1
   - gemfiles/Gemfile.rails-5-2
   - gemfiles/Gemfile.rails-6.0
 
@@ -25,16 +22,11 @@ install:
 script:
   - bundle exec rake --trace test
   - bundle exec rubocop --rails Gemfile \
-    gemfiles/Gemfile.rails-4-2 gemfiles/Gemfile.rails-5-0 \
-    gemfiles/Gemfile.rails-5-1 gemfiles/Gemfile.rails-5-2 \
-    gemfiles/Gemfile.rails-6.0 lib/ test/ Rakefile
+    gemfiles/Gemfile.rails-5-2 \ gemfiles/Gemfile.rails-6.0 \
+    lib/ test/ Rakefile
 
 matrix:
   fast_finish: true
   exclude:
-    - gemfile: gemfiles/Gemfile.rails-4-2
-      rvm: ruby-head
-    - gemfile: gemfiles/Gemfile.rails-4-2
-      rvm: 2.7.0
     - gemfile: gemfiles/Gemfile.rails-6.0
       rvm: 2.4.9

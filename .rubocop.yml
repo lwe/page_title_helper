@@ -1,5 +1,6 @@
 AllCops:
   TargetRubyVersion: 2.4
+  TargetRailsVersion: 5.2
 Style/FileName:
   Exclude:
     - 'gemfiles/Gemfile.*'

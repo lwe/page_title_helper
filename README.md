@@ -8,9 +8,9 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## What does this gem do?
 
-Ever wondered if there was an easier and DRY-way to set your page titles (and/or headings),
-introducing _page title helper_, a small view helper for Rails 4.2 and 5
-to inflect titles from controllers and actions.
+Ever wondered if there was an easier and DRY-way to set your page titles
+(and/or headings), introducing _page title helper_, a small view helper for
+Rails to inflect titles from controllers and actions.
 
 In your layout, add this to your `<head>`-section:
 
