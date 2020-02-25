@@ -21,6 +21,8 @@ about why a change log is important.
   ([#104](https://github.com/lwe/page_title_helper/pull/104))
 
 ### Fixed
+- Fix warnings in the `.travis.yml`
+  ([#106](https://github.com/lwe/page_title_helper/pull/106))
 
 ### Security
 
