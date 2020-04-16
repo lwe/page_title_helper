@@ -7,7 +7,6 @@ language: ruby
 cache: bundler
 
 rvm:
-  - 2.4.10
   - 2.5.8
   - 2.6.6
   - 2.7.1
@@ -29,6 +28,3 @@ script:
 
 jobs:
   fast_finish: true
-  exclude:
-    - gemfile: gemfiles/Gemfile.rails-6.0
-      rvm: 2.4.10

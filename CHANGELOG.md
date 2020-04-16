@@ -17,6 +17,8 @@ about why a change log is important.
 ### Deprecated
 
 ### Removed
+- Drop support for Ruby 2.4
+  ([#109](https://github.com/lwe/page_title_helper/pull/109))
 - Drop support for Rails < 5.2
   ([#104](https://github.com/lwe/page_title_helper/pull/104))
 
