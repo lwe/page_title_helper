@@ -23,7 +23,7 @@ install:
 
 script:
   - bundle exec rake --trace test
-  - bundle exec rubocop --rails Gemfile \
+  - bundle exec rubocop Gemfile \
     gemfiles/Gemfile.rails-5-2 \ gemfiles/Gemfile.rails-6.0 \
     lib/ test/ Rakefile
 
