@@ -13,6 +13,8 @@ about why a change log is important.
 - Add support for Ruby 3.1 (#143)
 
 ### Changed
+- Convert the tests to RSpec
+  ([#112](https://github.com/lwe/page_title_helper/pull/112))
 
 ### Deprecated
 
