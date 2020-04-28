@@ -75,7 +75,9 @@ module PageTitleHelper
 
     # handle format aliases
     format = options.delete(:format)
-    format = PageTitleHelper.formats[format] if PageTitleHelper.formats.include?(format)
+    if PageTitleHelper.formats.include?(format)
+      format = PageTitleHelper.formats[format]
+    end
 
     # construct basic env to pass around
     env = { title: title, app: options.delete(:app), options: options, view: self }
