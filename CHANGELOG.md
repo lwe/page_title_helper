@@ -9,6 +9,9 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
+- Add support for Rails 6.1
+  ([#113](https://github.com/lwe/page_title_helper/pull/113),
+   [#114](https://github.com/lwe/page_title_helper/pull/114))
 - Officially support Ruby 2.7
   ([#103](https://github.com/lwe/page_title_helper/pull/103))
 
