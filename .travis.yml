@@ -14,7 +14,7 @@ rvm:
 
 gemfile:
   - Gemfile
-  - gemfiles/Gemfile.rails-5-2
+  - gemfiles/Gemfile.rails-5.2
   - gemfiles/Gemfile.rails-6.0
   - gemfiles/Gemfile.rails-6.1
 
@@ -24,7 +24,7 @@ install:
 script:
   - bundle exec rake --trace test
   - bundle exec rubocop Gemfile \
-    gemfiles/Gemfile.rails-5-2 gemfiles/Gemfile.rails-6.0 \
+    gemfiles/Gemfile.rails-5.2 gemfiles/Gemfile.rails-6.0 \
     gemfiles/Gemfile.rails-6.1 lib/ test/ Rakefile
 
 jobs:
