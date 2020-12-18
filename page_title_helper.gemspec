@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.license          = 'MIT'
 
-  s.add_dependency 'rails', '>= 5.2.0', '< 6.1'
+  s.add_dependency 'rails', '>= 5.2.0', '< 6.2'
 
   s.add_development_dependency 'rake', '>= 10.3.2'
   s.add_development_dependency 'shoulda'
