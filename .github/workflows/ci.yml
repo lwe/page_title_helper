@@ -1,0 +1,70 @@
+---
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: '15 3 * * 1'
+jobs:
+  static-analysis:
+    name: 'Static analysis'
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Set up Ruby'
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '3.0.0'
+      - name: 'Check the environment'
+        run: |
+          ruby --version
+          gem --version
+      - name: 'Install bundler'
+        run: |
+          gem install bundler
+          bundle --version
+      - name: 'Install gems'
+        run: 'bundle install --jobs 4 --retry 3'
+      - name: 'Run RuboCop'
+        run: |
+          bundle exec rubocop Gemfile \
+            gemfiles/Gemfile.rails-5.2 gemfiles/Gemfile.rails-6.0 \
+            gemfiles/Gemfile.rails-6.1 lib/ test/ Rakefile
+  test:
+    name: "Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Set up Ruby'
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '${{ matrix.ruby }}'
+      - name: 'Check the environment'
+        run: |
+          ruby --version
+          gem --version
+      - name: 'Install bundler'
+        run: |
+          gem install bundler
+          bundle --version
+      - name: 'Install gems'
+        env:
+          MATRIX_RAILS_VERSION: ${{ matrix.rails }}
+        run: |
+          export BUNDLE_GEMFILE="${GITHUB_WORKSPACE}/gemfiles/Gemfile.rails-${MATRIX_RAILS_VERSION}"
+          bundle install --jobs 4 --retry 3
+      - name: 'Run the tests'
+        run: 'bundle exec rake --trace test'
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - '2.5.8'
+          - '2.6.6'
+          - '2.7.2'
+        rails:
+          - '5.2'
+          - '6.0'
+          - '6.1'
