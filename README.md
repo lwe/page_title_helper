@@ -1,6 +1,6 @@
 # Page title helper
 
-[![Build Status](https://travis-ci.org/lwe/page_title_helper.svg?branch=master)](https://travis-ci.org/lwe/page_title_helper)
+[![GitHub CI Status](https://github.com/lwe/page_title_helper/workflows/CI/badge.svg?branch=main)](https://github.com/lwe/page_title_helper/actions)
 [![Gem Version](https://badge.fury.io/rb/page_title_helper.svg)](https://badge.fury.io/rb/page_title_helper)
 
 This project adheres to [Semantic Versioning](https://semver.org/).
