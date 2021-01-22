@@ -9,6 +9,7 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
+- Add automatic gem release (#122)
 - Add support for Rails 6.1 (#113, #114)
 - Officially support Ruby 2.7 (#103)
 
