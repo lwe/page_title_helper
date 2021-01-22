@@ -21,6 +21,7 @@ about why a change log is important.
 - Drop support for Rails < 5.2 (#104)
 
 ### Fixed
+- Use a better-maintained Ruby setup for the CI (#121)
 - Fix warnings in the `.travis.yml` (#106)
 
 ### Security
