@@ -211,7 +211,7 @@ _Note:_ Put this kind of stuff into an initializer, like
 ## Contributing
 
 Pull request are more than welcome. Please adhere to our
-[CODE_OF_CONDUCT.md](code of conduct) in discussions and contributions.
+[code of conduct](CODE_OF_CONDUCT.md) in discussions and contributions.
 Thanks!
 
 ## Maintainers
