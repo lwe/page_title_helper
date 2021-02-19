@@ -9,14 +9,24 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
-- Add support for Ruby 3 (#120)
-- Add automatic gem release (#122)
-- Add support for Rails 6.1 (#113, #114)
-- Officially support Ruby 2.7 (#103)
 
 ### Changed
 
 ### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## 5.0.0
+
+### Added
+- Add support for Ruby 3 (#120)
+- Add automatic gem release (#122)
+- Add support for Rails 6.1 (#113, #114)
+- Officially support Ruby 2.7 (#103)
 
 ### Removed
 - Drop support for Ruby 2.4 (#109)
@@ -25,8 +35,6 @@ about why a change log is important.
 ### Fixed
 - Use a better-maintained Ruby setup for the CI (#121)
 - Fix warnings in the `.travis.yml` (#106)
-
-### Security
 
 ## 4.0.0
 
