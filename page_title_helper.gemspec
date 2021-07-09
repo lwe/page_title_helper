@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Simple, internationalized and DRY page titles and headings for Rails.'
   s.description = 'Simple, internationalized and DRY page titles and headings for Rails.'
 
-  s.required_ruby_version = '>= 2.5.0'
+  s.required_ruby_version = '>= 2.6.0'
 
   s.authors  = ['Lukas Westermann']
   s.email    = ['lukas.westermann@gmail.com']
