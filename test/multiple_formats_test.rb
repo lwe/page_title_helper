@@ -60,7 +60,7 @@ class MultipleFormatsTest < ActiveSupport::TestCase
       @view = TestView.new
     end
 
-    should 'allow to overide format through YAML' do
+    should 'allow to override format through YAML' do
       @view.controller! 'pages', 'features'
       assert_equal 'Wohaapp > Feature comparison', @view.page_title
     end
