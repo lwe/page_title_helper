@@ -69,16 +69,13 @@ module PageTitleHelper
     options[:format] ||= :title # handles :format => false
     options.assert_valid_keys(:app, :default, :format)
 
-    # read page title and split into 'real' title and customized format
-    title = @_page_title ||= page_title_from_translation(options[:default])
-    title, options[:format] = *(title << options[:format]) if title.is_a?(Array)
+    format, real_title = build_title_and_format(options)
 
     # handle format aliases
-    format = options.delete(:format)
     format = PageTitleHelper.formats[format] if PageTitleHelper.formats.include?(format)
 
     # construct basic env to pass around
-    env = { title: title, app: options.delete(:app), options: options, view: self }
+    env = { title: real_title, app: options[:app], options: options, view: self }
 
     # interpolate format
     Interpolations.interpolate(format, env)
@@ -99,6 +96,29 @@ module PageTitleHelper
       keys << default
 
       I18n.t(keys.shift, default: keys)
+    end
+
+  private
+
+    ##
+    # Read the page title and splits it into 'real' title and the customized
+    # format.
+    #
+    # @param {Hash} options
+    #
+    # @return {Array}
+    #
+    def build_title_and_format(options)
+      raw_title = @_page_title ||= page_title_from_translation(options[:default])
+      if raw_title.is_a?(Array)
+        title_and_format = raw_title + [options[:format]]
+        real_title, format = *title_and_format
+      else
+        real_title = raw_title
+        format = options[:format]
+      end
+
+      [format, real_title]
     end
 end
 
