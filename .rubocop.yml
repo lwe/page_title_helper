@@ -15,3 +15,6 @@ Layout/IndentationConsistency:
 Naming/FileName:
   Exclude:
     - 'gemfiles/Gemfile.*'
+
+Gemspec/RequireMFA:
+  Enabled: false
