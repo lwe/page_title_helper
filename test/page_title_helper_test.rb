@@ -32,7 +32,9 @@ class PageTitleHelperTest < ActiveSupport::TestCase
         PageTitleHelper.interpolates(:foobar_test) { |_env| 'foobar_test' }
         PageTitleHelper.interpolates(:title_foobar) { |_env| 'title_foobar' }
 
-        assert_equal 'title_foobar / foobar_test / foobar / foobar_x', PageTitleHelper::Interpolations.interpolate(':title_foobar / :foobar_test / :foobar / :foobar_x', {})
+        assert_equal 'title_foobar / foobar_test / foobar / foobar_x',
+                     PageTitleHelper::Interpolations.interpolate(':title_foobar / :foobar_test / :foobar / :foobar_x',
+                                                                 {})
       end
     end
 

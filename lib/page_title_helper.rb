@@ -25,7 +25,7 @@ module PageTitleHelper
     end
 
     def app(env)
-      env[:app] || I18n.translate('app.name', default: File.basename(Rails.root).humanize)
+      env[:app] || I18n.t('app.name', default: File.basename(Rails.root).humanize)
     end
 
     def title(env)
@@ -75,9 +75,7 @@ module PageTitleHelper
 
     # handle format aliases
     format = options.delete(:format)
-    if PageTitleHelper.formats.include?(format)
-      format = PageTitleHelper.formats[format]
-    end
+    format = PageTitleHelper.formats[format] if PageTitleHelper.formats.include?(format)
 
     # construct basic env to pass around
     env = { title: title, app: options.delete(:app), options: options, view: self }
@@ -100,7 +98,7 @@ module PageTitleHelper
       keys << :"#{base}.title"
       keys << default
 
-      I18n.translate(keys.shift, default: keys)
+      I18n.t(keys.shift, default: keys)
     end
 end
 

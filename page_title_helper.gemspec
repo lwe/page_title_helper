@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-$:.push File.expand_path('../lib', __FILE__)
+$:.push File.expand_path('lib', __dir__)
 require 'page_title_helper/version'
 
 Gem::Specification.new do |s|
@@ -15,7 +14,8 @@ Gem::Specification.new do |s|
   s.email    = ['lukas.westermann@gmail.com']
   s.homepage = 'https://github.com/lwe/page_title_helper'
 
-  s.files            = %w{Gemfile LICENSE README.md CODE_OF_CONDUCT.md CHANGELOG.md Rakefile page_title_helper.gemspec} + Dir['**/*.{rb,yml}']
+  s.files            = %w[Gemfile LICENSE README.md CODE_OF_CONDUCT.md CHANGELOG.md Rakefile
+                          page_title_helper.gemspec] + Dir['**/*.{rb,yml}']
   s.test_files       = s.files.grep(%r{^(test|spec)/})
   s.require_path     = 'lib'
 
@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 5.2.0', '< 6.2'
 
   s.add_development_dependency 'rake', '~> 13.0.6'
-  s.add_development_dependency 'shoulda', '~> 4.0.0'
   s.add_development_dependency 'rubocop', '~> 1.25.1'
   s.add_development_dependency 'rubocop-rails', '~> 2.13.2'
   s.add_development_dependency 'rubocop-rake', '~> 0.6.0'
+  s.add_development_dependency 'shoulda', '~> 4.0.0'
 end
