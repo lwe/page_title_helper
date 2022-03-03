@@ -17,7 +17,7 @@ about why a change log is important.
 ### Deprecated
 
 ### Removed
-- Drop support for Ruby 2.5 (#127)
+- Drop support for Ruby 2.5 and 2.6 (#127, #145)
 
 ### Fixed
 - Avoid modifying a frozen array in Ruby 3 (#135)
