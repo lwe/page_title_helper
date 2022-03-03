@@ -18,6 +18,7 @@ about why a change log is important.
 - Drop support for Ruby 2.5 (#127)
 
 ### Fixed
+- Avoid modifying a frozen array in Ruby 3 (#135)
 
 ### Security
 
