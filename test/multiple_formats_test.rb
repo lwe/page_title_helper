@@ -47,7 +47,8 @@ class MultipleFormatsTest < ActiveSupport::TestCase
 
       should 'override locally supplied :format arguments' do
         assert_equal('Something', @view.page_title { ['Something', '* * * :title * * *'] })
-        assert_equal '* * * Something * * *', @view.page_title(format: '-= :title =-') # yeah, using x-tra ugly titles :)
+        # yeah, using x-tra ugly titles :)
+        assert_equal '* * * Something * * *', @view.page_title(format: '-= :title =-')
       end
     end
   end
