@@ -31,7 +31,8 @@ jobs:
         run: |
           bundle exec rubocop Gemfile \
             gemfiles/Gemfile.rails-5.2 gemfiles/Gemfile.rails-6.0 \
-            gemfiles/Gemfile.rails-6.1 lib/ test/ Rakefile
+            gemfiles/Gemfile.rails-6.1 gemfiles/Gemfile.rails-7.0 \
+            lib/ test/ Rakefile
   test:
     name: "Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
     runs-on: ubuntu-20.04
