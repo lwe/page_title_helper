@@ -1,4 +1,4 @@
-$:.push File.expand_path('lib', __dir__)
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'page_title_helper/version'
 
 Gem::Specification.new do |s|
