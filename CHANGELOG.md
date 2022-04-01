@@ -9,20 +9,28 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
-- Add support for Rails 7.0 (#131)
-- Add support for Ruby 3.1 (#143)
 
 ### Changed
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Security
+
+## 6.0.0
+
+### Added
+- Add support for Rails 7.0 (#131)
+- Add support for Ruby 3.1 (#143)
+
+### Removed
 - Drop support for Ruby 2.5 and 2.6 (#127, #145)
 
 ### Fixed
 - Avoid modifying a frozen array in Ruby 3 (#135)
-
-### Security
 
 ## 5.0.0
 
