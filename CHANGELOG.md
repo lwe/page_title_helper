@@ -9,6 +9,7 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
+- Add official support for Ruby 3.2 (#157)
 
 ### Changed
 
