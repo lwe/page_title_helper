@@ -10,6 +10,7 @@ jobs:
   build:
     name: 'Publish to RubyGems'
     runs-on: ubuntu-22.04
+    timeout-minutes: 3
 
     steps:
       - uses: actions/checkout@master
