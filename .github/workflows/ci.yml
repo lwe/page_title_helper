@@ -31,7 +31,7 @@ jobs:
       - name: 'Run RuboCop'
         run: |
           bundle exec rubocop Gemfile \
-            gemfiles/Gemfile.rails-5.2 gemfiles/Gemfile.rails-6.0 \
+            gemfiles/Gemfile.rails-6.0 \
             gemfiles/Gemfile.rails-6.1 gemfiles/Gemfile.rails-7.0 \
             lib/ test/ Rakefile
   test:
@@ -64,9 +64,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { 'rails': '5.2', 'ruby': '3.0.6' }
-          - { 'rails': '5.2', 'ruby': '3.1.4' }
-          - { 'rails': '5.2', 'ruby': '3.2.2' }
           - { 'rails': '6.0', 'ruby': '3.0.6' }
           - { 'rails': '6.0', 'ruby': '3.1.4' }
           - { 'rails': '6.0', 'ruby': '3.2.2' }
