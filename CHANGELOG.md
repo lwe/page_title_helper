@@ -9,21 +9,27 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
-- Add support for Rails 7.1 (#166)
-- Add official support for Ruby 3.2 (#157)
 
 ### Changed
 
 ### Deprecated
 
 ### Removed
-- Drop support for Rails 6.0 (#168)
-- Drop support for Rails 5.2 (#164)
-- Drop support for Ruby 2.7 (#163)
 
 ### Fixed
 
 ### Security
+
+## 7.0.0
+
+### Added
+- Add support for Rails 7.1 (#166)
+- Add official support for Ruby 3.2 (#157)
+
+### Removed
+- Drop support for Rails 6.0 (#168)
+- Drop support for Rails 5.2 (#164)
+- Drop support for Ruby 2.7 (#163)
 
 ## 6.0.0
 
