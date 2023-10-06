@@ -25,14 +25,6 @@ Metrics/ClassLength:
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyleForLeadingUnderscores.
-# SupportedStylesForLeadingUnderscores: disallowed, required, optional
-Naming/MemoizedInstanceVariableName:
-  Exclude:
-    - 'test/test_helper.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
 Rails/RootPathnameMethods:
   Exclude:
     - 'lib/page_title_helper.rb'

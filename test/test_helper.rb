@@ -17,7 +17,7 @@ ActiveSupport.test_order = :sorted
 module Rails
   class << self
     def root
-      @pathname ||= Pathname.new('/this/is/just/for/testing/page_title_helper')
+      @root ||= Pathname.new('/this/is/just/for/testing/page_title_helper')
     end
 
     def env
