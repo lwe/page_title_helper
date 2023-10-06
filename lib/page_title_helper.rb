@@ -14,7 +14,7 @@ require 'active_support'
 module PageTitleHelper
   # https://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/interpolations.rb
   module Interpolations
-    extend self
+    module_function
 
     def self.interpolate(pattern, *args)
       instance_methods(false).sort.reverse.inject(pattern.to_s.dup) do |result, tag|
@@ -25,7 +25,7 @@ module PageTitleHelper
     end
 
     def app(env)
-      env[:app] || I18n.t('app.name', default: File.basename(Rails.root).humanize)
+      env[:app] || I18n.t('app.name', default: Rails.root.basename.humanize)
     end
 
     def title(env)
