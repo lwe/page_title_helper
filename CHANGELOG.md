@@ -17,6 +17,7 @@ about why a change log is important.
 ### Deprecated
 
 ### Removed
+- Drop support for Rails 6.0 (#168)
 - Drop support for Rails 5.2 (#164)
 - Drop support for Ruby 2.7 (#163)
 
