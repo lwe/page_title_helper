@@ -14,7 +14,7 @@ require 'active_support'
 module PageTitleHelper
   # https://github.com/thoughtbot/paperclip/blob/master/lib/paperclip/interpolations.rb
   module Interpolations
-    extend self
+    module_function
 
     def self.interpolate(pattern, *args)
       instance_methods(false).sort.reverse.inject(pattern.to_s.dup) do |result, tag|
