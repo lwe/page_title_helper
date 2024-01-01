@@ -17,7 +17,7 @@ jobs:
       - name: 'Set up Ruby'
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2.2'
+          ruby-version: '3.3.0'
       - name: 'Check the environment'
         run: |
           ruby --version
@@ -67,9 +67,12 @@ jobs:
           - { 'rails': '6.1', 'ruby': '3.0.6' }
           - { 'rails': '6.1', 'ruby': '3.1.4' }
           - { 'rails': '6.1', 'ruby': '3.2.2' }
+          - { 'rails': '6.1', 'ruby': '3.3.0' }
           - { 'rails': '7.0', 'ruby': '3.0.6' }
           - { 'rails': '7.0', 'ruby': '3.1.4' }
           - { 'rails': '7.0', 'ruby': '3.2.2' }
+          - { 'rails': '7.0', 'ruby': '3.3.0' }
           - { 'rails': '7.1', 'ruby': '3.0.6' }
           - { 'rails': '7.1', 'ruby': '3.1.4' }
           - { 'rails': '7.1', 'ruby': '3.2.2' }
+          - { 'rails': '7.1', 'ruby': '3.3.0' }
