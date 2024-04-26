@@ -16,6 +16,7 @@ about why a change log is important.
 ### Deprecated
 
 ### Removed
+- Drop support for Ruby 3.0 (#184)
 
 ### Fixed
 
