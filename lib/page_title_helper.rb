@@ -34,8 +34,8 @@ module PageTitleHelper
   end
 
   # Add new, custom, interpolation.
-  def self.interpolates(key, &block)
-    Interpolations.send(:define_method, key, &block)
+  def self.interpolates(key, &)
+    Interpolations.send(:define_method, key, &)
   end
 
   # Default options, which are globally referenced and can
@@ -75,7 +75,7 @@ module PageTitleHelper
     format = PageTitleHelper.formats[format] if PageTitleHelper.formats.include?(format)
 
     # construct basic env to pass around
-    env = { title: real_title, app: options[:app], options: options, view: self }
+    env = { title: real_title, app: options[:app], options:, view: self }
 
     # interpolate format
     Interpolations.interpolate(format, env)
