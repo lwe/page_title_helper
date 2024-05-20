@@ -10,7 +10,7 @@ on:
 jobs:
   static-analysis:
     name: 'Static analysis'
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
 
   test:
     name: "Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 2
     env:
       BUNDLE_GEMFILE: "${{ github.workspace }}/gemfiles/Gemfile.rails-${{ matrix.rails }}"
