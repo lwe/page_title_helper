@@ -18,16 +18,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3.2'
+          bundler-cache: true
       - name: 'Check the environment'
         run: |
           ruby --version
           gem --version
-      - name: 'Install bundler'
-        run: |
-          gem install bundler
           bundle --version
-      - name: 'Install gems'
-        run: 'bundle install --jobs 4 --retry 3'
       - name: 'Run RuboCop'
         run: |
           bundle exec rubocop Gemfile \
@@ -38,26 +34,21 @@ jobs:
     name: "Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
     runs-on: ubuntu-22.04
     timeout-minutes: 2
+    env:
+      BUNDLE_GEMFILE: "${{ github.workspace }}/gemfiles/Gemfile.rails-${{ matrix.rails }}"
     steps:
       - uses: actions/checkout@v4
       - name: 'Set up Ruby'
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '${{ matrix.ruby }}'
+          bundler-cache: true
       - name: 'Check the environment'
         run: |
           ruby --version
           gem --version
-      - name: 'Install bundler'
-        run: |
-          gem install bundler
           bundle --version
-      - name: 'Install gems'
-        env:
-          MATRIX_RAILS_VERSION: ${{ matrix.rails }}
-        run: |
-          export BUNDLE_GEMFILE="${GITHUB_WORKSPACE}/gemfiles/Gemfile.rails-${MATRIX_RAILS_VERSION}"
-          bundle install --jobs 4 --retry 3
+          echo $BUNDLE_GEMFILE
       - name: 'Run the tests'
         run: 'bundle exec rake --trace test'
     strategy:
