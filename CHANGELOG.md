@@ -9,18 +9,25 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
-- Add official support for Ruby 3.3 (#177)
 
 ### Changed
 
 ### Deprecated
 
 ### Removed
-- Drop support for Ruby 3.0 (#184)
 
 ### Fixed
 
 ### Security
+
+## x.y.z
+
+### Added
+- Add support for Rails 7.2 (#193)
+- Add official support for Ruby 3.3 (#177)
+
+### Removed
+- Drop support for Ruby 3.0 (#184)
 
 ## 7.0.0
 
