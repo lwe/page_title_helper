@@ -20,7 +20,7 @@ about why a change log is important.
 
 ### Security
 
-## x.y.z
+## 8.0.0
 
 ### Added
 - Add support for Rails 7.2 (#193)
