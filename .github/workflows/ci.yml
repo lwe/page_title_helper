@@ -17,7 +17,7 @@ jobs:
       - name: 'Set up Ruby'
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3.4'
+          ruby-version: '3.3.5'
           bundler-cache: true
       - name: 'Check the environment'
         run: |
@@ -57,13 +57,13 @@ jobs:
         include:
           - { 'rails': '6.1', 'ruby': '3.1.6' }
           - { 'rails': '6.1', 'ruby': '3.2.5' }
-          - { 'rails': '6.1', 'ruby': '3.3.4' }
+          - { 'rails': '6.1', 'ruby': '3.3.5' }
           - { 'rails': '7.0', 'ruby': '3.1.6' }
           - { 'rails': '7.0', 'ruby': '3.2.5' }
-          - { 'rails': '7.0', 'ruby': '3.3.4' }
+          - { 'rails': '7.0', 'ruby': '3.3.5' }
           - { 'rails': '7.1', 'ruby': '3.1.6' }
           - { 'rails': '7.1', 'ruby': '3.2.5' }
-          - { 'rails': '7.1', 'ruby': '3.3.4' }
+          - { 'rails': '7.1', 'ruby': '3.3.5' }
           - { 'rails': '7.2', 'ruby': '3.1.6' }
           - { 'rails': '7.2', 'ruby': '3.2.5' }
-          - { 'rails': '7.2', 'ruby': '3.3.4' }
+          - { 'rails': '7.2', 'ruby': '3.3.5' }
