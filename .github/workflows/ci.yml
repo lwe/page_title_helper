@@ -28,7 +28,7 @@ jobs:
         run: |
           bundle exec rubocop Gemfile \
             gemfiles/Gemfile.rails-6.1 gemfiles/Gemfile.rails-7.0 gemfiles/Gemfile.rails-7.1 gemfiles/Gemfile.rails-7.2 \
-            lib/ test/ Rakefile
+            gemfiles/Gemfile.rails-8.0 lib/ test/ Rakefile
 
   test:
     name: "Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
@@ -67,3 +67,5 @@ jobs:
           - { 'rails': '7.2', 'ruby': '3.1.6' }
           - { 'rails': '7.2', 'ruby': '3.2.6' }
           - { 'rails': '7.2', 'ruby': '3.3.6' }
+          - { 'rails': '8.0', 'ruby': '3.2.6' }
+          - { 'rails': '8.0', 'ruby': '3.3.6' }

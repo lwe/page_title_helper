@@ -9,6 +9,7 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
+- Add support for Rails 8.0 (#197)
 
 ### Changed
 
