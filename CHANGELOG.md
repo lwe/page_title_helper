@@ -16,6 +16,7 @@ about why a change log is important.
 ### Deprecated
 
 ### Removed
+- Drop support for Rails 6.1 (#201)
 
 ### Fixed
 
