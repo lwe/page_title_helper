@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 7.0.0', '< 8.1'
 
   s.add_development_dependency 'rake', '~> 13.2.1'
-  s.add_development_dependency 'rubocop', '~> 1.65.1'
-  s.add_development_dependency 'rubocop-rails', '~> 2.25.1'
+  s.add_development_dependency 'rubocop', '~> 1.68.0'
+  s.add_development_dependency 'rubocop-rails', '~> 2.27.0'
   s.add_development_dependency 'rubocop-rake', '~> 0.6.0'
   s.add_development_dependency 'shoulda', '~> 4.0.0'
 end
