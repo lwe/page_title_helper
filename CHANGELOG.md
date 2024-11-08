@@ -9,6 +9,7 @@ about why a change log is important.
 ## x.y.z
 
 ### Added
+
 - Add support for Rails 8.0 (#197)
 
 ### Changed
@@ -16,6 +17,7 @@ about why a change log is important.
 ### Deprecated
 
 ### Removed
+
 - Drop support for Rails 6.1 (#201)
 
 ### Fixed
@@ -25,19 +27,23 @@ about why a change log is important.
 ## 8.0.0
 
 ### Added
+
 - Add support for Rails 7.2 (#193)
 - Add official support for Ruby 3.3 (#177)
 
 ### Removed
+
 - Drop support for Ruby 3.0 (#184)
 
 ## 7.0.0
 
 ### Added
+
 - Add support for Rails 7.1 (#166)
 - Add official support for Ruby 3.2 (#157)
 
 ### Removed
+
 - Drop support for Rails 6.0 (#168)
 - Drop support for Rails 5.2 (#164)
 - Drop support for Ruby 2.7 (#163)
@@ -45,42 +51,51 @@ about why a change log is important.
 ## 6.0.0
 
 ### Added
+
 - Add support for Rails 7.0 (#131)
 - Add support for Ruby 3.1 (#143)
 
 ### Removed
+
 - Drop support for Ruby 2.5 and 2.6 (#127, #145)
 
 ### Fixed
+
 - Avoid modifying a frozen array in Ruby 3 (#135)
 
 ## 5.0.0
 
 ### Added
+
 - Add support for Ruby 3 (#120)
 - Add automatic gem release (#122)
 - Add support for Rails 6.1 (#113, #114)
 - Officially support Ruby 2.7 (#103)
 
 ### Removed
+
 - Drop support for Ruby 2.4 (#109)
 - Drop support for Rails < 5.2 (#104)
 
 ### Fixed
+
 - Use a better-maintained Ruby setup for the CI (#121)
 - Fix warnings in the `.travis.yml` (#106)
 
 ## 4.0.0
 
 ### Added
+
 - Add support for Rails 6.0 (#94)
 
 ### Removed
+
 - Drop support for Ruby < 2.4 (#93)
 
 ## 3.0.0
 
 ### Added
+
 - Add Ruby 2.4.0 to the build matrix (#68)
 - Add a CHANGELOG.md (#59)
 - Add RuboCop checking to the CI (#52)
@@ -92,16 +107,19 @@ about why a change log is important.
 - Use Appraisal for building with different Rails versions (#19)
 
 ### Changed
+
 - Replaced Appraisals with specific Gemfiles (#41)
 - Delete obsolete init.rb file (#61)
 - Add Rails 5.0 to the build matrix (#42)
 - Raise RVM and Gem minimum versions (#3)
 
 ### Removed
+
 - Drop support for Rails 3.2 and 4.0 (#39)
 - Drop support for Ruby 1.9.x (#24)
 
 ### Fixed
+
 - Fix @_page_title uninitialized warning (#62)
 - Fix the Travis build on Ruby 2.3.3 (#63)
 - Do do not shell-out to `git` in Gemfile (#49)
