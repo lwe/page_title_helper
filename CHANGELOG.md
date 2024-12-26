@@ -10,8 +10,6 @@ about why a change log is important.
 
 ### Added
 
-- Add support for Ruby 3.4 (#206)
-
 ### Changed
 
 ### Deprecated
@@ -21,6 +19,10 @@ about why a change log is important.
 ### Fixed
 
 ### Security
+
+## 9.1.0: Add support for Ruby 3.4
+
+- Add support for Ruby 3.4 (#206)
 
 ## 9.0.0: Add support for Rails 8.0, drop support for Rails 6.1
 
