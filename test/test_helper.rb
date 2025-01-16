@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This line can be dropped once we no longer support Rails 7.0.
+require 'logger'
 require 'active_support'
 require 'action_view'
 require 'page_title_helper'
