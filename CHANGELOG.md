@@ -16,6 +16,8 @@ about why a change log is important.
 
 ### Removed
 
+- Drop support for Rails 7.0 (#218)
+
 ### Fixed
 
 ### Security
