@@ -27,7 +27,7 @@ jobs:
       - name: 'Run RuboCop'
         run: |
           bundle exec rubocop Gemfile \
-            gemfiles/Gemfile.rails-7.0 gemfiles/Gemfile.rails-7.1 gemfiles/Gemfile.rails-7.2 \
+            gemfiles/Gemfile.rails-7.1 gemfiles/Gemfile.rails-7.2 \
             gemfiles/Gemfile.rails-8.0 lib/ test/ Rakefile
 
   test:
