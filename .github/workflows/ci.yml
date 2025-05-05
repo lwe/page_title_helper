@@ -31,7 +31,7 @@ jobs:
             gemfiles/Gemfile.rails-8.0 lib/ test/ Rakefile
 
   test:
-    name: "Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
+    name: Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     env:
