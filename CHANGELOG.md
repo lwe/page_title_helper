@@ -10,6 +10,8 @@ about why a change log is important.
 
 ### Added
 
+- Add support for Rails 8.1 (#230)
+
 ### Changed
 
 ### Deprecated
