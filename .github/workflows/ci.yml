@@ -27,8 +27,8 @@ jobs:
       - name: 'Run RuboCop'
         run: |
           bundle exec rubocop Gemfile \
-            gemfiles/Gemfile.rails-7.2 \
-            gemfiles/Gemfile.rails-8.0 lib/ test/ Rakefile
+            gemfiles/Gemfile.rails-7.2 gemfiles/Gemfile.rails-8.0 \
+            gemfiles/Gemfile.rails-8.1 lib/ test/ Rakefile
 
   test:
     name: "Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
@@ -61,3 +61,6 @@ jobs:
           - { 'rails': '8.0', 'ruby': '3.2.8' }
           - { 'rails': '8.0', 'ruby': '3.3.8' }
           - { 'rails': '8.0', 'ruby': '3.4.6' }
+          - { 'rails': '8.1', 'ruby': '3.2.8' }
+          - { 'rails': '8.1', 'ruby': '3.3.8' }
+          - { 'rails': '8.1', 'ruby': '3.4.6' }
