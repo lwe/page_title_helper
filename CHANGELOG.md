@@ -10,7 +10,7 @@ about why a change log is important.
 
 ### Added
 
-- Add support for Rails 8.1 (#230)
+- Add support for Rails 8.1 (#230, #232, #233)
 
 ### Changed
 
