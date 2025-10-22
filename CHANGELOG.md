@@ -10,20 +10,26 @@ about why a change log is important.
 
 ### Added
 
-- Add support for Rails 8.1 (#230, #232, #233)
-
 ### Changed
 
 ### Deprecated
 
 ### Removed
 
-- Drop support for Ruby 3.1 (#219)
-- Drop support for Rails 7.0 and 7.1 (#218, #220, #228)
-
 ### Fixed
 
 ### Security
+
+## 10.0.0: Add support for Rails 8.1, drop support for Ruby 3.1 and Rails < 7.2
+
+### Added
+
+- Add support for Rails 8.1 (#230, #232, #233)
+
+### Removed
+
+- Drop support for Ruby 3.1 (#219)
+- Drop support for Rails 7.0 and 7.1 (#218, #220, #228)
 
 ## 9.1.0: Add support for Ruby 3.4
 
