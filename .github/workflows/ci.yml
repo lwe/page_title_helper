@@ -17,7 +17,7 @@ jobs:
       - name: 'Set up Ruby'
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3.10'
+          ruby-version: '3.4.7'
           bundler-cache: true
       - name: 'Check the environment'
         run: |
