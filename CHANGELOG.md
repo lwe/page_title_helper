@@ -10,6 +10,8 @@ about why a change log is important.
 
 ### Added
 
+- Add support for Ruby 4.0 (#240)
+
 ### Changed
 
 ### Deprecated
