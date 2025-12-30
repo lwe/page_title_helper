@@ -55,20 +55,37 @@ class MultipleFormatsTest < ActiveSupport::TestCase
 
   context '#page_title, aliases and YAML' do
     setup do
-      I18n.load_path = [File.join(File.dirname(__FILE__), 'en_wohaapp.yml')]
-      I18n.reload!
       PageTitleHelper.formats[:promo] = ':app > :title'
       @view = TestView.new
     end
 
     should 'allow to override format through YAML' do
-      @view.controller! 'pages', 'features'
-      assert_equal 'Wohaapp > Feature comparison', @view.page_title
+      with_i18n_backend_from_file File.expand_path("en_wohaapp.yml", __dir__) do
+        @view.controller! 'pages', 'features'
+        assert_equal 'Wohaapp > Feature comparison', @view.page_title
+      end
     end
 
     should 'handle raw string formats from YAML as well' do
-      @view.controller! 'pages', 'signup'
-      assert_equal 'Sign up for Wohaapp now!', @view.page_title
+      with_i18n_backend_from_file File.expand_path("en_wohaapp.yml", __dir__) do
+        @view.controller! 'pages', 'signup'
+        assert_equal 'Sign up for Wohaapp now!', @view.page_title
+      end
     end
+  end
+
+  private
+
+  def with_i18n_backend_from_file(file)
+    original_backend = I18n.backend
+
+    backend = I18n::Backend::Simple.new
+    backend.load_translations(file)
+
+    I18n.backend = backend
+
+    yield
+  ensure
+    I18n.backend = original_backend
   end
 end
