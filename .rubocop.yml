@@ -5,7 +5,7 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.3
   TargetRailsVersion: 7.2
   NewCops: enable
 
