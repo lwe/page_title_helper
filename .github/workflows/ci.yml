@@ -7,6 +7,8 @@ on:
   pull_request:
   schedule:
     - cron: '15 3 * * 1'
+permissions:
+  contents: read
 jobs:
   static-analysis:
     name: 'Static analysis'
