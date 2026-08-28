@@ -2,9 +2,7 @@
 name: 'Publish'
 
 on:
-  push:
-    tags:
-      - 'v*'
+  pull_request:
 
 jobs:
   build:
@@ -13,6 +11,10 @@ jobs:
     timeout-minutes: 3
 
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@v1
+        with:
+          config: ${{ vars.PERMISSIONS_CONFIG }}
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -29,6 +31,5 @@ jobs:
           chmod 0600 $HOME/.gem/credentials
           printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
           gem build page_title_helper.gemspec
-          gem push page_title_helper-*.gem
         env:
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
