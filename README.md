@@ -1,6 +1,6 @@
 # Page title helper
 
-[![GitHub CI Status](https://github.com/lwe/page_title_helper/workflows/CI/badge.svg?branch=main)](https://github.com/lwe/page_title_helper/actions)
+[![Build Status](https://github.com/lwe/page_title_helper/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/lwe/page_title_helper/actions/)
 [![Gem Version](https://badge.fury.io/rb/page_title_helper.svg)](https://badge.fury.io/rb/page_title_helper)
 
 This project adheres to [Semantic Versioning](https://semver.org/).
