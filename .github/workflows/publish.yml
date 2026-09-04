@@ -7,7 +7,8 @@ on:
       - 'v*'
 
 permissions:
-  contents: read
+  contents: write
+  id-token: write
 
 jobs:
   build:
@@ -26,12 +27,4 @@ jobs:
           ruby-version: '4.0.6'
 
       - name: 'Publish to RubyGems'
-        run: |
-          mkdir -p $HOME/.gem
-          touch $HOME/.gem/credentials
-          chmod 0600 $HOME/.gem/credentials
-          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-          gem build page_title_helper.gemspec
-          gem push page_title_helper-*.gem
-        env:
-          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+        uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
