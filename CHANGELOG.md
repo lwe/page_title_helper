@@ -18,6 +18,7 @@ about why a change log is important.
 
 ### Removed
 
+- Drop support for Rails 7.2 (#264)
 - Drop support for Ruby 3.2 (#246)
 
 ### Fixed
