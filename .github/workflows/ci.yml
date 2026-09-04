@@ -76,6 +76,9 @@ jobs:
 
     runs-on: ubuntu-26.04
 
+    permissions:
+      security-events: read # necessary so that the job can also run after the merge to main
+
     timeout-minutes: 2
 
     steps:
