@@ -24,12 +24,6 @@ Metrics/ClassLength:
   Max: 105
 
 # Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Rails/RootPathnameMethods:
-  Exclude:
-    - 'lib/page_title_helper.rb'
-
-# Offense count: 1
 Style/MixinUsage:
   Exclude:
     - 'Rakefile'
