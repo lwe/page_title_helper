@@ -10,20 +10,26 @@ about why a change log is important.
 
 ### Added
 
-- Add support for Ruby 4.0 (#240)
-
 ### Changed
 
 ### Deprecated
 
 ### Removed
 
-- Drop support for Rails 7.2 (#264)
-- Drop support for Ruby 3.2 (#246)
-
 ### Fixed
 
 ### Security
+
+## 11.0.0: Add support for Ruby 4.0, drop support for Rails 7.2 and Ruby 3.2
+
+### Added
+
+- Add support for Ruby 4.0 (#240)
+
+### Removed
+
+- Drop support for Rails 7.2 (#264)
+- Drop support for Ruby 3.2 (#246)
 
 ## 10.0.0: Add support for Rails 8.1, drop support for Ruby 3.1 and Rails < 7.2
 
