@@ -24,7 +24,7 @@ jobs:
       - name: 'Set up Ruby'
         uses: ruby/setup-ruby@bec3f19a76460dbe12f60def7d1a77585f07516c # v1.322.0
         with:
-          ruby-version: '4.0.6'
+          ruby-version: '4.0.7'
           bundler-cache: true
       - name: 'Check the environment'
         run: |
@@ -66,10 +66,10 @@ jobs:
         include:
           - { 'rails': '8.0', 'ruby': '3.3.12' }
           - { 'rails': '8.0', 'ruby': '3.4.10' }
-          - { 'rails': '8.0', 'ruby': '4.0.6' }
+          - { 'rails': '8.0', 'ruby': '4.0.7' }
           - { 'rails': '8.1', 'ruby': '3.3.12' }
           - { 'rails': '8.1', 'ruby': '3.4.10' }
-          - { 'rails': '8.1', 'ruby': '4.0.6' }
+          - { 'rails': '8.1', 'ruby': '4.0.7' }
 
   zizmor:
     name: zizmor
