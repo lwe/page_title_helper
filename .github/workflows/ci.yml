@@ -65,10 +65,10 @@ jobs:
       matrix:
         include:
           - { 'rails': '8.0', 'ruby': '3.3.12' }
-          - { 'rails': '8.0', 'ruby': '3.4.10' }
+          - { 'rails': '8.0', 'ruby': '3.4.11' }
           - { 'rails': '8.0', 'ruby': '4.0.7' }
           - { 'rails': '8.1', 'ruby': '3.3.12' }
-          - { 'rails': '8.1', 'ruby': '3.4.10' }
+          - { 'rails': '8.1', 'ruby': '3.4.11' }
           - { 'rails': '8.1', 'ruby': '4.0.7' }
 
   zizmor:
