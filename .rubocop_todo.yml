@@ -33,11 +33,3 @@ Rails/RootPathnameMethods:
 Style/MixinUsage:
   Exclude:
     - 'Rakefile'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle, Autocorrect.
-# SupportedStyles: module_function, extend_self, forbidden
-Style/ModuleFunction:
-  Exclude:
-    - 'lib/page_title_helper.rb'
