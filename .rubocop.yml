@@ -12,10 +12,6 @@ AllCops:
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 
-Naming/FileName:
-  Exclude:
-    - 'gemfiles/Gemfile.*'
-
 Gemspec/RequireMFA:
   Enabled: false
 

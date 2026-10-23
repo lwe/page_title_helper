@@ -16,3 +16,8 @@ Rake::TestTask.new(:test) do |t|
   t.pattern = 'test/**/*_test.rb'
   t.verbose = true
 end
+
+desc 'Runs RuboCop for checking the Ruby files.'
+task :rubocop do
+  sh 'rubocop gemfiles/ lib/ test/ page_title_helper.gemspec Gemfile Rakefile'
+end

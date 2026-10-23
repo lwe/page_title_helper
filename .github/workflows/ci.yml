@@ -40,8 +40,7 @@ jobs:
           bundle --version
 
       - name: 'Run RuboCop'
-        run: |
-          bundle exec rubocop Gemfile gemfiles/ lib/ test/ Rakefile
+        run: 'bundle exec rake rubocop'
 
   test:
     name: "Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
