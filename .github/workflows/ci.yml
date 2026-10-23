@@ -41,16 +41,14 @@ jobs:
 
       - name: 'Run RuboCop'
         run: |
-          bundle exec rubocop Gemfile gemfiles/release.gemfile \
-            gemfiles/Gemfile.rails-8.0 gemfiles/Gemfile.rails-8.1 \
-            lib/ test/ Rakefile
+          bundle exec rubocop Gemfile gemfiles/ lib/ test/ Rakefile
 
   test:
     name: "Tests: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}"
     runs-on: ubuntu-26.04
     timeout-minutes: 2
     env:
-      BUNDLE_GEMFILE: "${{ github.workspace }}/gemfiles/Gemfile.rails-${{ matrix.rails }}"
+      BUNDLE_GEMFILE: "${{ github.workspace }}/gemfiles/rails_${{ matrix.rails }}.rb"
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
