@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.push File.expand_path('lib', __dir__)
-require 'page_title_helper/version'
-
 Gem::Specification.new do |s|
   s.name = 'page_title_helper'
   s.summary = 'Simple, internationalized and DRY page titles and headings for Rails.'
-  s.version = PageTitleHelper::VERSION
+  s.version = '11.0.0'
   s.license = 'MIT'
 
   s.required_ruby_version = '>= 3.3.0'
@@ -22,7 +19,6 @@ Gem::Specification.new do |s|
     README.md
     Rakefile
     lib/page_title_helper.rb
-    lib/page_title_helper/version.rb
     page_title_helper.gemspec
   ]
   s.extra_rdoc_files = %w[CHANGELOG.md LICENSE README.md]
