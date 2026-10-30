@@ -9,6 +9,9 @@ AllCops:
   TargetRailsVersion: 8.0
   NewCops: enable
 
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec
+
 Gemspec/RequireMFA:
   Enabled: false
 
