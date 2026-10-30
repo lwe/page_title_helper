@@ -30,7 +30,7 @@ jobs:
       - name: 'Set up Ruby'
         uses: ruby/setup-ruby@26e5b7d197ebf60545ee9667bcbace0be11ccaec # v1.334.0
         with:
-          ruby-version: '4.0.7'
+          ruby-version: '4.0.9'
           bundler-cache: true
 
       - name: 'Check the environment'
@@ -75,12 +75,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { 'rails': '8.0', 'ruby': '3.3.12' }
-          - { 'rails': '8.0', 'ruby': '3.4.11' }
-          - { 'rails': '8.0', 'ruby': '4.0.7' }
-          - { 'rails': '8.1', 'ruby': '3.3.12' }
-          - { 'rails': '8.1', 'ruby': '3.4.11' }
-          - { 'rails': '8.1', 'ruby': '4.0.7' }
+          - { 'rails': '8.0', 'ruby': '3.3.13' }
+          - { 'rails': '8.0', 'ruby': '3.4.12' }
+          - { 'rails': '8.0', 'ruby': '4.0.9' }
+          - { 'rails': '8.1', 'ruby': '3.3.13' }
+          - { 'rails': '8.1', 'ruby': '3.4.12' }
+          - { 'rails': '8.1', 'ruby': '4.0.9' }
 
   zizmor:
     name: zizmor
