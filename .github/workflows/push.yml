@@ -30,7 +30,7 @@ jobs:
       - name: 'Set up Ruby'
         uses: ruby/setup-ruby@26e5b7d197ebf60545ee9667bcbace0be11ccaec # v1.334.0
         with:
-          ruby-version: '4.0.7'
+          ruby-version: '4.0.9'
 
       - name: 'Publish to RubyGems'
         uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
