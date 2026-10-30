@@ -12,6 +12,14 @@ Gem::Specification.new do |s|
   s.authors = ['Lukas Westermann']
   s.email = ['lukas.westermann@gmail.com']
 
+  s.metadata = {
+    'bug_tracker_uri' => 'https://github.com/lwe/page_title_helper/issues',
+    'changelog_uri' => 'https://github.com/lwe/page_title_helper/blob/master/CHANGELOG.md',
+    'documentation_uri' => 'https://www.rubydoc.info/gems/page_title_helper',
+    'homepage_uri' => s.homepage,
+    'source_code_uri' => 'https://github.com/lwe/page_title_helper'
+  }
+
   s.files = %w[
     CHANGELOG.md
     Gemfile
