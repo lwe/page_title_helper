@@ -9,15 +9,15 @@ AllCops:
   TargetRailsVersion: 8.0
   NewCops: enable
 
+Gemspec/RequireMFA:
+  Enabled: false
+
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 
-Naming/FileName:
+Metrics/BlockLength:
   Exclude:
-    - 'gemfiles/Gemfile.*'
-
-Gemspec/RequireMFA:
-  Enabled: false
+    - 'test/**/*.rb'
 
 Rails/RakeEnvironment:
   Enabled: false
