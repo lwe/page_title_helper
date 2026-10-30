@@ -4,24 +4,29 @@ $LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'page_title_helper/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'page_title_helper'
-  s.version     = PageTitleHelper::VERSION
-  s.platform    = Gem::Platform::RUBY
-  s.summary     = 'Simple, internationalized and DRY page titles and headings for Rails.'
-  s.description = 'Simple, internationalized and DRY page titles and headings for Rails.'
+  s.name = 'page_title_helper'
+  s.summary = 'Simple, internationalized and DRY page titles and headings for Rails.'
+  s.version = PageTitleHelper::VERSION
+  s.license = 'MIT'
 
   s.required_ruby_version = '>= 3.3.0'
 
-  s.authors  = ['Lukas Westermann']
-  s.email    = ['lukas.westermann@gmail.com']
   s.homepage = 'https://github.com/lwe/page_title_helper'
+  s.authors = ['Lukas Westermann']
+  s.email = ['lukas.westermann@gmail.com']
 
-  s.files            = %w[Gemfile LICENSE README.md CODE_OF_CONDUCT.md CHANGELOG.md Rakefile
-                          page_title_helper.gemspec] + Dir['**/*.{rb,yml}']
-  s.test_files       = s.files.grep(%r{^(test|spec)/})
-  s.require_path     = 'lib'
-
-  s.license          = 'MIT'
+  s.files = %w[
+    CHANGELOG.md
+    Gemfile
+    LICENSE
+    README.md
+    Rakefile
+    lib/page_title_helper.rb
+    lib/page_title_helper/version.rb
+    page_title_helper.gemspec
+  ]
+  s.extra_rdoc_files = %w[CHANGELOG.md LICENSE README.md]
+  s.require_paths = ['lib']
 
   s.add_dependency 'rails', '>= 8.0.0', '< 8.2'
 
