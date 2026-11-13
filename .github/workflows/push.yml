@@ -29,6 +29,13 @@ jobs:
         uses: ruby/setup-ruby@de492cf36cbab201753d720ce4f4e336cd688c94 # v1.336.0
         with:
           ruby-version: '4.0.9'
+          # To avoid cache-poising attacks, we must not cache installed gems.
+          bundler-cache: false
+
+      - name: 'Install gems'
+        # `bundler cache` also disables automatic gem installation.
+        # So we need to do it explicitly now.
+        run: bundle install
 
       - name: 'Check the environment'
         run: |
