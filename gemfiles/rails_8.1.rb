@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
+eval_gemfile '../Gemfile'
 
 gem 'rails', '~> 8.1.0'
-
-gemspec path: '../'

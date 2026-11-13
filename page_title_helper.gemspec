@@ -33,10 +33,4 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'rails', '>= 8.0.0', '< 8.2'
-
-  spec.add_development_dependency 'rake', '~> 13.4.2'
-  spec.add_development_dependency 'rubocop', '~> 1.92.0'
-  spec.add_development_dependency 'rubocop-rails', '~> 2.38.0'
-  spec.add_development_dependency 'rubocop-rake', '~> 0.7.1'
-  spec.add_development_dependency 'shoulda', '~> 4.0.0'
 end
