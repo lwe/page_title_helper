@@ -104,7 +104,6 @@ jobs:
     name: 'Check the release setup'
     runs-on: ubuntu-26.04
     timeout-minutes: 2
-    environment: release
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -115,6 +114,13 @@ jobs:
         uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199 # v1.338.0
         with:
           ruby-version: '4.0.9'
+          # To avoid cache-poising attacks, we must not cache installed gems.
+          bundler-cache: false
+
+      - name: 'Install gems'
+        # `bundler cache` also disables automatic gem installation.
+        # So we need to do it explicitly now.
+        run: bundle install
 
       - name: 'Check the environment'
         run: |
