@@ -32,5 +32,13 @@ jobs:
         with:
           ruby-version: '4.0.9'
 
+      - name: 'Check the environment'
+        run: |
+          ruby --version
+          gem --version
+          bundle --version
+          echo $BUNDLE_GEMFILE
+          bundle list
+
       - name: 'Publish to RubyGems'
         uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1

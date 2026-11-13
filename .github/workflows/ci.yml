@@ -38,6 +38,7 @@ jobs:
           ruby --version
           gem --version
           bundle --version
+          bundle list
 
       - name: 'Run RuboCop'
         run: 'bundle exec rake rubocop'
@@ -66,6 +67,7 @@ jobs:
           gem --version
           bundle --version
           echo $BUNDLE_GEMFILE
+          bundle list
 
       - name: 'Run the tests'
         run: 'bundle exec rake --trace test'
