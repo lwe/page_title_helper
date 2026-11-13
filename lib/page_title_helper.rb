@@ -25,7 +25,7 @@ module PageTitleHelper
     end
 
     def app(env)
-      env[:app] || I18n.t('app.name', default: File.basename(Rails.root).humanize)
+      env[:app] || I18n.t('app.name', default: Rails.root.basename.humanize)
     end
 
     def title(env)
