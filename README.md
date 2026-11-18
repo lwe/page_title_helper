@@ -40,7 +40,7 @@ As gem (from rubygems.org):
 gem 'page_title_helper'
 
 # living on the bleeding edge?
-gem 'page_title_helper', git: 'git://github.com/lwe/page_title_helper.git'
+gem 'page_title_helper', git: 'https://github.com/lwe/page_title_helper.git'
 ```
 
 ## Translated titles
@@ -86,7 +86,7 @@ In `config/locales/en.yml`:
 en:
   dashboard:
     index:
-      title: "Welcome back, {{name}}"
+      title: "Welcome back, %{name}"
 ```
 
 In `app/views/dashboard/index.html.erb`:
@@ -210,15 +210,18 @@ _Note:_ Put this kind of stuff into an initializer, like
 
 ## Contributing
 
-Pull request are more than welcome. Please adhere to our
+Pull requests are more than welcome. Please adhere to our
 [code of conduct](CODE_OF_CONDUCT.md) in discussions and contributions.
 Thanks!
 
 ## Maintainers
 
-* [@lwe - Lukas Westermann](https://github.com/lwe)
-* [@oliverklee - Oliver Klee](https://github.com/oliverklee)
+This project is maintained by [Oliver Klee (@oliverklee)](https://github.com/oliverklee).
 
-## Licence and copyright
-Copyright (c) 2009 Lukas Westermann (Zurich, Switzerland), released under the
-MIT license
+Originally created by [Lukas Westermann (@lwe)](https://github.com/lwe).
+
+**Special thanks to Oliver**, whose dedication and countless contributions have kept this project alive and thriving over the years. It wouldn't be where it is today without him.
+
+## License
+
+Released under the [MIT License](./LICENSE).

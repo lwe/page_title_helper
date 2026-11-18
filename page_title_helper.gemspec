@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 3.3.0'
 
   spec.homepage = 'https://github.com/lwe/page_title_helper'
-  spec.authors = ['Lukas Westermann']
-  spec.email = ['lukaspec.westermann@gmail.com']
+  spec.authors = ['Oliver Klee', 'Lukas Westermann']
 
   spec.metadata = {
     'bug_tracker_uri' => 'https://github.com/lwe/page_title_helper/issues',
