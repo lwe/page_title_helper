@@ -30,7 +30,7 @@ jobs:
       - name: 'Set up Ruby'
         uses: ruby/setup-ruby@be3c7df29b3349ec6bcfc6b4792f1cf9f5237d18 # v1.343.0
         with:
-          ruby-version: '4.0.9'
+          ruby-version: '4.0.10'
           bundler-cache: true
 
       - name: 'Check the environment'
@@ -76,12 +76,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { 'rails': '8.0', 'ruby': '3.3.13' }
-          - { 'rails': '8.0', 'ruby': '3.4.12' }
-          - { 'rails': '8.0', 'ruby': '4.0.9' }
-          - { 'rails': '8.1', 'ruby': '3.3.13' }
-          - { 'rails': '8.1', 'ruby': '3.4.12' }
-          - { 'rails': '8.1', 'ruby': '4.0.9' }
+          - { 'rails': '8.0', 'ruby': '3.3.14' }
+          - { 'rails': '8.0', 'ruby': '3.4.13' }
+          - { 'rails': '8.0', 'ruby': '4.0.10' }
+          - { 'rails': '8.1', 'ruby': '3.3.14' }
+          - { 'rails': '8.1', 'ruby': '3.4.13' }
+          - { 'rails': '8.1', 'ruby': '4.0.10' }
 
   zizmor:
     name: zizmor
@@ -113,7 +113,7 @@ jobs:
       - name: 'Set up Ruby'
         uses: ruby/setup-ruby@be3c7df29b3349ec6bcfc6b4792f1cf9f5237d18 # v1.343.0
         with:
-          ruby-version: '4.0.9'
+          ruby-version: '4.0.10'
           # To avoid cache-poising attacks, we must not cache installed gems.
           bundler-cache: false
 
